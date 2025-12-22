@@ -1,0 +1,61 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+gi
+dist
+dist-ssr
+*.local
+
+# Yarn Berry (Yarn 2/3/4)
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/patches
+!.yarn/pnp.cjs
+!.yarn/unplugged
+!.yarn/build-state.yml
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Node modules
+node_modules
+
+# Directorios de sistema
+.DS_Store       # Mac
+Thumbs.db       # Windows
+desktop.ini     # Windows
+*.swp           # Linux/Mac swap files
+*.swo
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Archivos temporales del sistema
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Otros archivos ocultos
+*.DS_Store
+.idea/          # JetBrains IDEs
+*.iml
+
+.env
