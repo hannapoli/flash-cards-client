@@ -1,12 +1,16 @@
-import { useState } from 'react'
 import './App.css'
+import { Footer } from './components/Footer'
+import { AuthProvider } from './contexts/AuthContext'
+import { AppRoutes } from './routes/AppRoutes'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>APP</div>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      <Footer />
     </>
   )
 }

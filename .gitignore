@@ -1,3 +1,9 @@
+# Node modules
+node_modules
+
+# Variables de entorno
+.env
+
 # Logs
 logs
 *.log
@@ -33,9 +39,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Node modules
-node_modules
-
 # Directorios de sistema
 .DS_Store       # Mac
 Thumbs.db       # Windows
@@ -57,5 +60,3 @@ desktop.ini     # Windows
 *.DS_Store
 .idea/          # JetBrains IDEs
 *.iml
-
-.env
