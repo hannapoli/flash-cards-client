@@ -1,6 +1,14 @@
-import { NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
+import { useAuth } from '../../hooks/useAuth';
 
 export const AdminNav = () => {
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        await logout();
+        navigate('/');
+    };
     return (
         <nav>
             <ul className='nav'>
@@ -40,11 +48,7 @@ export const AdminNav = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink
-                        to='/admin/logout'
-                        className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
-                        Logout
-                    </NavLink>
+                    <Link to='/' onClick={handleLogout} className='nav-link-active'>Logout</Link>
                 </li>
             </ul>
         </nav>

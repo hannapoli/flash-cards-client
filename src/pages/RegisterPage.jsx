@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from '../hooks/useAuth';
 
 export const RegisterPage = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: ""
+    name: '',
+    email: '',
+    password: ''
   });
 
   const { register, loading, authError, setAuthError } = useAuth();
@@ -42,42 +42,53 @@ export const RegisterPage = () => {
       <section>
         <h2>Registrarse</h2>
 
-        {authError && <p className="errorMessage">{authError}</p>} {/* Añadir la clase a Scss */}
+        {authError && <p className='errorMessage'>{authError}</p>} {/* Añadir la clase a Scss */}
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Nombre"
-            value={formData.name}
-            onChange={handleChange}
-            noValidate
-          />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            noValidate
-          />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Contraseña"
-            value={formData.password}
-            onChange={handleChange}
-            noValidate
-          />
-          <button type="submit" disabled={loading}>
+          <div>
+            <label htmlFor='name'>Nombre:</label>
+            <input
+              type='text'
+              name='name'
+              id='name'
+              placeholder='Nombre'
+              value={formData.name}
+              onChange={handleChange}
+              noValidate
+            />
+          </div>
+
+          <div>
+            <label htmlFor='email'>Email:</label>
+            <input
+              type='email'
+              name='email'
+              id='email'
+              placeholder='Email'
+              value={formData.email}
+              onChange={handleChange}
+              noValidate
+            />
+          </div>
+
+          <div>
+            <label htmlFor='password'>Contraseña:</label>
+            <input
+              type='password'
+              name='password'
+              id='password'
+              placeholder='Contraseña'
+              value={formData.password}
+              onChange={handleChange}
+              noValidate
+            />
+          </div>
+          <button type='submit' disabled={loading}>
             {loading ? 'Registrando...' : 'Registrarse'}
           </button>
         </form>
         <div>
-          Ya tienes una cuenta? <Link to="/auth/login">Inicia sesión</Link>
+          Ya tienes una cuenta? <Link to='/auth/login'>Inicia sesión</Link>
         </div>
       </section>
     </>

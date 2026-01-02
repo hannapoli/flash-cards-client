@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router'
-import { AdminDashboardPage, HomePage, LoginPage, RegisterPage, UserDashboardPage } from '../pages'
+import { AdminCard, AdminCategories, AdminDashboardPage, AdminLanguages, AdminUserCreate, AdminUserManagement, AdminUserModify, AdminWords, HomePage, LoginPage, RegisterPage, UserDashboardPage } from '../pages'
 import { AdminLayout } from '../pages/templates/AdminLayout'
 import { UserLayout } from '../pages/templates/UserLayout'
 import { PrivateRoutes } from './PrivateRoutes'
@@ -14,8 +14,8 @@ export const AppRoutes = () => {
                 <Route path='/auth/login' element={<LoginPage />} />
 
                 {/* Rutas protegidas para el rol de administrador */}
-                <Route 
-                    path='/admin' 
+                <Route
+                    path='/admin'
                     element={
                         <PrivateRoutes allowedRoles={['admin']}>
                             <AdminLayout />
@@ -23,12 +23,20 @@ export const AppRoutes = () => {
                     }
                 >
                     <Route path='dashboard' element={<AdminDashboardPage />} />
-                    {/* otras rutas de admin */}
+
+                    <Route path='users' element={<AdminUserManagement />} />
+                    <Route path='users/create' element={<AdminUserCreate />} />
+                    <Route path='users/modify/:firebase_uid' element={<AdminUserModify />} />
+
+                    <Route path='languages' element={<AdminLanguages />} />
+                    <Route path='categories' element={<AdminCategories />} />
+                    <Route path='words' element={<AdminWords />} />
+                    <Route path='card' element={<AdminCard />} />
                 </Route>
 
                 {/* Rutas protegidas para el rol de usuario */}
-                <Route 
-                    path='/user' 
+                <Route
+                    path='/user'
                     element={
                         <PrivateRoutes allowedRoles={['user']}>
                             <UserLayout />
