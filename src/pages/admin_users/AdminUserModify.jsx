@@ -56,7 +56,6 @@ export const AdminUserModify = () => {
     }
   };
 
-
   return (
     <>
       <h1>Gestión de usuarios</h1>

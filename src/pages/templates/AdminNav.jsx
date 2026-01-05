@@ -28,23 +28,9 @@ export const AdminNav = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/admin/languages'
+                        to='/admin/lang'
                         className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
                         Idiomas
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/admin/categories'
-                        className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
-                        Categorías
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/admin/words'
-                        className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
-                        Palabras
                     </NavLink>
                 </li>
                 <li>

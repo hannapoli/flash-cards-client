@@ -21,16 +21,9 @@ export const UserNav = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/user/categories'
+                        to='/user/lang'
                         className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
-                        Categorías
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/user/words'
-                        className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
-                        Palabras
+                        Idiomas
                     </NavLink>
                 </li>
                 <li>

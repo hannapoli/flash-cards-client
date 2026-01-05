@@ -39,7 +39,7 @@ export const useFetch = () => {
         const response = await fetch(url, options);
 
         if (!response.ok) {
-          let errorMessage = `HTTP error, status: ${response.ok}`;
+          let errorMessage = `Error al hacer hacer la petición al servidor`;
           try {
             const errorData = await response.json();
             console.error('Error del servidor:', errorData);
@@ -61,5 +61,5 @@ export const useFetch = () => {
       }
     }, []);
 
-  return { data, loading, setLoading, error, fetchData };
+  return { data, loading, setLoading, error, setError, fetchData };
 };

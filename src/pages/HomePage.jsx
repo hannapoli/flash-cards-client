@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 export const HomePage = () => {
     return (
         <>
-            <h1>Bienvenido a FlashCards</h1>
+            <h1>¡Bienvenido a FlashCards!</h1>
             <p>Tu plataforma para aprender y practicar nuevos idiomas de manera efectiva.</p>
             <p>Regístrate o inicia sesión para comenzar a crear tus propias tarjetas de estudio y mejorar tus habilidades lingüísticas.</p>
             <div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { useFetch } from '../../hooks/useFetch';
 import { auth } from '../../firebase/firebaseConfig';
+import { DeletePopUp } from '../../components/DeletePopUp';
 
 export const AdminUserManagement = () => {
   const [firebaseUid, setFirebaseUid] = useState('');
@@ -106,20 +107,14 @@ export const AdminUserManagement = () => {
 
       {/* Popup para eliminar el usuario seleccionado */}
       {showDeletePopup && foundUser && (
-        <article className="popupCard">
-          <div className="popupContent">
-            <h3>¿Estás seguro que quieres eliminar este usuario?</h3>
-            <p>UID: {foundUser.firebase_uid}</p>
-            <p>Email: {foundUser.email}</p>
-            {deleteError && <p className="errorMessage">{deleteError}</p>}
-            <div>
-              <button onClick={handleDeleteUser} disabled={deleteLoading} className='confirmBtn'>
-                {deleteLoading ? 'Eliminando...' : 'Sí'}
-              </button>
-              <button onClick={() => setShowDeletePopup(false)} className='cancelBtn'>No</button>
-            </div>
-          </div>
-        </article>
+        <DeletePopUp 
+                  type="este usuario"
+                  item={foundUser.email}
+                  onConfirm={handleDeleteUser}
+                  onCancel={() => setShowDeletePopup(false)}
+                  loading={deleteLoading}
+                  error={deleteError}
+                />
       )}
     </>
   );

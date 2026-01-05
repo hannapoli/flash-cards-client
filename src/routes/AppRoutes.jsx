@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router'
-import { AdminCard, AdminCategories, AdminDashboardPage, AdminLanguages, AdminUserCreate, AdminUserManagement, AdminUserModify, AdminWords, HomePage, LoginPage, RegisterPage, UserDashboardPage } from '../pages'
+import { AdminCard, AdminCategories, AdminCategoriesCreate, AdminCategoriesModify, AdminDashboardPage, AdminLangCreate, AdminLangModify, AdminLanguages, AdminUserCreate, AdminUserManagement, AdminUserModify, AdminWords, AdminWordsCreate, AdminWordsModify, HomePage, LoginPage, RegisterPage, UserDashboardPage } from '../pages'
 import { AdminLayout } from '../pages/templates/AdminLayout'
 import { UserLayout } from '../pages/templates/UserLayout'
 import { PrivateRoutes } from './PrivateRoutes'
@@ -28,9 +28,18 @@ export const AppRoutes = () => {
                     <Route path='users/create' element={<AdminUserCreate />} />
                     <Route path='users/modify/:firebase_uid' element={<AdminUserModify />} />
 
-                    <Route path='languages' element={<AdminLanguages />} />
-                    <Route path='categories' element={<AdminCategories />} />
-                    <Route path='words' element={<AdminWords />} />
+                    <Route path='lang' element={<AdminLanguages />} />
+                    <Route path='lang/create' element={<AdminLangCreate />} />
+                    <Route path='lang/modify/:language_id' element={<AdminLangModify />} />
+
+                    <Route path='categories/:language_id' element={<AdminCategories />} />
+                    <Route path='categories/create/:language_id' element={<AdminCategoriesCreate />} />
+                    <Route path='categories/modify/:category_id' element={<AdminCategoriesModify />} />
+
+                    <Route path='words/:category_id' element={<AdminWords />} />
+                    <Route path='words/create/:category_id' element={<AdminWordsCreate />} />
+                    <Route path='words/modify/:word_id' element={<AdminWordsModify />} />
+
                     <Route path='card' element={<AdminCard />} />
                 </Route>
 
