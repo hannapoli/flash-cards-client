@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useFetch } from "../../hooks/useFetch";
 import { auth } from "../../firebase/firebaseConfig";
 
 export const AdminLangCreate = () => {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         language: '',
@@ -43,6 +45,9 @@ export const AdminLangCreate = () => {
                 token
             );
             setCreateSuccess('Idioma creado correctamente.');
+            setTimeout(() => {
+                navigate(`/admin/lang`)
+            }, 2000);
         } catch (error) {
             setCreateError(error.message || 'Error al crear el idioma');
         } finally {

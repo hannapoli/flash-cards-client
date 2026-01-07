@@ -7,7 +7,7 @@ import { ItemList } from '../../components/ItemList';
 
 export const AdminCategories = () => {
   const location = useLocation();
-  const { language } = location.state || {};
+  const { language, category, category_id } = location.state || {};
   const { language_id } = useParams();
 
   const [categories, setCategories] = useState([]);

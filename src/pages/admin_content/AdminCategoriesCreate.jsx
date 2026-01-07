@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation, useParams } from 'react-router';
+import { Link, useLocation, useParams, useNavigate } from 'react-router';
 import { useFetch } from "../../hooks/useFetch";
 import { auth } from "../../firebase/firebaseConfig";
 
@@ -7,6 +7,8 @@ export const AdminCategoriesCreate = () => {
   const location = useLocation();
   const { language } = location.state || {};
   const { language_id } = useParams();
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     category: '',
     language_id: language_id
@@ -45,6 +47,9 @@ export const AdminCategoriesCreate = () => {
         token
       );
       setCreateSuccess('Categoría creada correctamente.');
+      setTimeout(() => {
+        navigate(`/admin/categories/${language_id}`, { state: { language, language_id }})
+      }, 2000);
     } catch (error) {
       setCreateError(error.message || 'Error al crear la categoría');
     } finally {

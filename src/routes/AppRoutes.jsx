@@ -40,7 +40,7 @@ export const AppRoutes = () => {
                     <Route path='words/create/:category_id' element={<AdminWordsCreate />} />
                     <Route path='words/modify/:word_id' element={<AdminWordsModify />} />
 
-                    <Route path='card' element={<AdminCard />} />
+                    <Route path='card/:word_id' element={<AdminCard />} />
                 </Route>
 
                 {/* Rutas protegidas para el rol de usuario */}
