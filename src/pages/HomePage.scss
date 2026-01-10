@@ -1,0 +1,25 @@
+.infoSection {
+    max-width: 600px;
+    margin-top: 3em;
+}
+
+.infoSection ul p {
+    text-align: left;
+}
+
+.infoSection ul {
+    padding: 0;
+    margin: 0.4em 0;
+}
+
+.infoSection li {
+    padding-left: 1em;
+    position: relative;
+}
+
+.infoSection li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-dark);
+}

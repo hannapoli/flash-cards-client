@@ -148,7 +148,6 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         setLoading(true);
-
         try {
             return await signOut(auth);
         } catch (error) {

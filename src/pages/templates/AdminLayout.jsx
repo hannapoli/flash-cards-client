@@ -8,7 +8,7 @@ export const AdminLayout = () => {
             <Header>
                 <AdminNav />
             </Header>
-            <main>
+            <main className='mainContainer flexColumn'>
                 <Outlet />
             </main>
         </>

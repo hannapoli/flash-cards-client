@@ -8,13 +8,9 @@ export const PrivateRoutes = ({ children, allowedRoles }) => {
         return <div>Cargando...</div>;
     }
 
-    if (!isLogged) {
-        return <Navigate to='/auth/login' />;
-    };
-
-    if (!allowedRoles.includes(role)) {
+    if (!isLogged || !allowedRoles.includes(role)) {
         return <Navigate to='/' />;
-    }
+    };
 
     return children;
 }

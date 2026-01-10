@@ -6,7 +6,7 @@ import { useFetch } from '../../hooks/useFetch';
 export const AdminCategoriesModify = () => {
     const location = useLocation();
     const { category, language_id, language } = location.state || {};
-    const { category_id } = useParams(); 
+    const { category_id } = useParams();
 
     const [formData, setFormData] = useState({
         id_category: category_id || '',
@@ -64,16 +64,15 @@ export const AdminCategoriesModify = () => {
     return (
         <>
             <h1>Gestión de categorías</h1>
-
-            <article className='itemDetails'>
+            <article className='flexColumn centeredContent'>
                 <h2>Modificar categoría</h2>
-                <p>Idioma seleccionado: {language?.language}</p>
+                <p className='group'>Idioma seleccionado: {language?.language}</p>
 
                 {modifySuccess && <p className='successMessage'>{modifySuccess}</p>}
                 {modifyError && <p className='errorMessage'>{modifyError}</p>}
 
-                <form onSubmit={handleModifyCategory}>
-                    <div>
+                <form onSubmit={handleModifyCategory} className='flexColumn centeredContent'>
+                    <div className='flexColumn'>
                         <label htmlFor='category'>Categoría:</label>
                         <input
                             type='text'
@@ -93,7 +92,7 @@ export const AdminCategoriesModify = () => {
                     </div>
                 </form>
                 <Link to={`/admin/categories/${language_id}`} state={{ language, language_id }}>
-                    <button>Volver a categorías</button>
+                    <button className='confirmBtn'>Volver a categorías</button>
                 </Link>
             </article>
         </>

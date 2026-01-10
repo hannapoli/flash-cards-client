@@ -1,0 +1,82 @@
+.itemList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+    margin-top: 1.5em;
+}
+
+.item {
+    background: var(--color-white);
+    border-radius: 15px;
+    padding: 1.5em;
+    box-shadow: 0 4px 15px rgba(107, 91, 149, 0.1);
+    transition: all 0.3s ease;
+    gap: 1em;
+}
+
+.item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(107, 91, 149, 0.15);
+}
+
+.itemBtn {
+    width: 100%;
+    padding: 1em;
+    font-size: 1.1rem;
+    background: var(--gradient-light);
+    color: var(--color-darker);
+    font-weight: 600;
+    text-align: center;
+}
+
+.itemBtn:hover {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+}
+
+.itemActions {
+    display: flex;
+    gap: 0.5em;
+}
+
+.itemActions > a,
+.itemActions > button {
+    width: 100%;
+    flex: 1 1 0;
+}
+
+.itemActions > a button,
+.itemActions > button {
+    width: 100%;
+    min-width: 100px;
+    font-size: 0.9rem;
+    padding: 0.7em 1em;
+}
+
+/* ===============================
+            768px
+=================================== */
+@media screen and (min-width: 768px) {
+    .itemList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .item {
+        padding: 1.8em;
+    }
+}
+/* 768px */
+/* ===============================
+            1200px
+=================================== */
+@media screen and (min-width: 1200px) {
+    .itemList {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5em;
+    }
+
+    .item {
+        padding: 2em;
+    }
+}
+/* 1200px+ */

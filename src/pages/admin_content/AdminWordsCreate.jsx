@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { Link, useLocation, useParams, useNavigate } from 'react-router';
-import { auth } from "../../firebase/firebaseConfig";
+import { auth } from '../../firebase/firebaseConfig';
 
 export const AdminWordsCreate = () => {
 
@@ -99,16 +99,16 @@ export const AdminWordsCreate = () => {
   
   return (
     <>
+      <article className='flexColumn centeredContent'>
       <h1>Gestión de palabras</h1>
-      <article>
         <h2>Añadir nueva palabra</h2>
-        <p>Categoría seleccionada: {category?.category}</p>
+        <p className='group'>Categoría seleccionada: {category?.category}</p>
 
         {createSuccess && <p className='successMessage'>{createSuccess}</p>}
         {createError && <p className='errorMessage'>{createError}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <div>
+        <form onSubmit={handleSubmit} className='flexColumn centeredContent'>
+          <div className='flexColumn'>
             <label htmlFor='word'>Palabra:</label>
             <input
               type='text'
@@ -121,7 +121,7 @@ export const AdminWordsCreate = () => {
             />
           </div>
 
-           <div>
+           <div className='flexColumn'>
             <label htmlFor='definition'>Definición:</label>
             <input
               type='text'
@@ -134,7 +134,7 @@ export const AdminWordsCreate = () => {
             />
           </div>
 
-           <div>
+           <div className='flexColumn'>
             <label htmlFor='transcription'>Transcripción:</label>
             <input
               type='text'
@@ -147,7 +147,7 @@ export const AdminWordsCreate = () => {
             />
           </div>
 
-           <div>
+           <div className='flexColumn'>
             <label htmlFor='example'>Ejemplo:</label>
             <input
               type='text'
@@ -161,23 +161,23 @@ export const AdminWordsCreate = () => {
           </div>
 
           <div>
-            <label htmlFor='image'>Imagen:</label>
+            <label htmlFor='image' className='labelUpload'>Subir imagen</label>
             <input 
-              type="file" 
-              id="image" 
-              name="image" 
-              accept="image/*"
+              type='file' 
+              id='image' 
+              name='image' 
+              accept='image/*'
               onChange={handleChange}
               noValidate
             />
           </div>
           
-          <button type='submit' disabled={createLoading} className='confirmBtn'>
+          <button type='submit' disabled={createLoading} className='confirmBtn marginTop'>
             {createLoading ? 'Creando...' : 'Crear palabra'}
           </button>
         </form>
         <Link to={`/admin/words/${category_id}`} state={{ category, category_id, language, language_id }}>
-          <button>Volver a palabras</button>
+          <button className='confirmBtn'>Volver a palabras</button>
         </Link>
       </article>
     </>

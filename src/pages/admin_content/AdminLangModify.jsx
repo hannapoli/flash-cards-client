@@ -65,13 +65,13 @@ export const AdminLangModify = () => {
         <>
             <h1>Gestión de idiomas</h1>
 
-            <article className='itemDetails'>
+            <article className='flexColumn centeredContent'>
                 <h2>Modificar idioma</h2>
                 {modifySuccess && <p className='successMessage'>{modifySuccess}</p>}
                 {modifyError && <p className='errorMessage'>{modifyError}</p>}
 
-                <form onSubmit={handleModifyLang}>
-                    <div>
+                <form onSubmit={handleModifyLang} className='flexColumn centeredContent'>
+                    <div className='flexColumn'>
                         <label htmlFor='language'>Idioma:</label>
                         <input
                             type='text'
@@ -85,7 +85,7 @@ export const AdminLangModify = () => {
                         />
                     </div>
 
-                    <div>
+                    <div className='flexColumn'>
                         <label htmlFor='code'>Código del idioma:</label>
                         <input
                             type='text'
@@ -99,13 +99,13 @@ export const AdminLangModify = () => {
                     </div>
 
                     <div>
-                        <button type='submit' disabled={modifyLoading} className='confirmBtn'>
+                        <button type='submit' disabled={modifyLoading} className='confirmBtn marginTop'>
                             {modifyLoading ? 'Modificando...' : 'Modificar idioma'}
                         </button>
                     </div>
                 </form>
-                <Link to="/admin/lang">
-                    <button>Volver a idiomas</button>
+                <Link to='/admin/lang'>
+                    <button className='confirmBtn'>Volver a idiomas</button>
                 </Link>
             </article>
         </>

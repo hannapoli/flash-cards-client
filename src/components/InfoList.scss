@@ -1,0 +1,60 @@
+.userList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+    margin-top: 0.5em;
+}
+.itemInfo {
+    background: var(--color-white);
+    border-radius: 15px;
+    padding: 1.5em;
+    box-shadow: 0 4px 15px rgba(107, 91, 149, 0.1);
+    transition: all 0.3s ease;
+    gap: 0.5em;
+}
+
+.itemInfo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(107, 91, 149, 0.15);
+}
+
+.infoActions {
+    gap: 0.5em;
+    padding-top: 1em;
+}
+
+.infoActions button,
+.infoActions a button {
+    flex: 1;
+    min-width: 100px;
+    font-size: 1rem;
+    padding: 0.7em 1em;
+}
+
+/* ===============================
+            768px
+=================================== */
+@media screen and (min-width: 768px) {
+    .userList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .itemInfo {
+        padding: 1.8em;
+    }
+}
+/* 768px */
+/* ===============================
+            1200px
+=================================== */
+@media screen and (min-width: 1200px) {
+    .userList {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5em;
+    }
+
+    .itemInfo {
+        padding: 2em;
+    }
+}
+/* 1200px+ */

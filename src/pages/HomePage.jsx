@@ -1,24 +1,36 @@
 import { Link } from 'react-router';
+import './HomePage.scss';
 
 export const HomePage = () => {
     return (
         <>
-            <h1>¡Bienvenido a FlashCards!</h1>
-            <p>Tu plataforma para aprender y practicar nuevos idiomas de manera efectiva.</p>
-            <p>Regístrate o inicia sesión para comenzar a crear tus propias tarjetas de estudio y mejorar tus habilidades lingüísticas.</p>
-            <div>
-                <Link to="auth/register"><button>Registrarse</button></Link>
-                <Link to="auth/login"><button>Iniciar sesión</button></Link>
-            </div>
-            <section>
-                <h2>¿Por qué elegir FlashCards?</h2>
-                <ul>
-                    <li>Fácil de usar: Interfaz intuitiva para crear y gestionar tus tarjetas.</li>
-                    <li>Personalizable: Crea tarjetas con texto, imágenes y audio.</li>
-                    <li>Accesible: Accede a tus tarjetas desde cualquier dispositivo.</li>
-                    <li>Seguimiento de progreso: Monitorea tu aprendizaje y mejora continuamente.</li>
-                </ul>
+        <main className='mainContainer contentWidth'>
+            <section className='flexColumn centeredContent'>
+                <h1 className='marginBottom'>¡Bienvenido a FlashCards!</h1>
+                <p>Tu plataforma para <strong className='bold'>aprender y practicar</strong></p> 
+                <p>nuevos <strong className='bold'>idiomas</strong> de manera efectiva.</p>
+                <p className='bold'>Regístrate o inicia sesión</p>
+                <p>para comenzar a crear tus propias <strong className='bold'>tarjetas de estudio</strong></p>
+                <p>y mejorar tus habilidades lingüísticas.</p>
+                <div className='btns flexColumn centeredContent marginTop'>
+                    <Link to='auth/register'><button className='bigBtn longBtn marginTop'>Registrarse</button></Link>
+                    <Link to='auth/login'><button className='bigBtn longBtn'>Iniciar sesión</button></Link>
+                </div>
+                <article className='flexColumn centeredContent infoSection'>                
+                    <h2>¿Por qué elegir FlashCards?</h2>
+                    <ul className='flexColumn '>
+                        <li><strong className='bold'>Fácil de usar:</strong> 
+                        <p>Interfaz intuitiva para crear y gestionar tus tarjetas.</p></li>
+                        <li><strong className='bold'>Personalizable:</strong> 
+                        <p>Crea tarjetas con texto, imágenes y audio.</p></li>
+                        <li><strong className='bold'>Accesible:</strong> 
+                        <p>Accede a tus tarjetas desde cualquier dispositivo.</p></li>
+                        <li><strong className='bold'>Seguimiento de progreso:</strong> 
+                        <p>Monitorea tu aprendizaje y mejora continuamente.</p></li>
+                    </ul>
+                </article>
             </section>
+            </main>
         </>
     )
 }

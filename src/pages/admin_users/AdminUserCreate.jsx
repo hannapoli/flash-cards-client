@@ -1,7 +1,9 @@
+import {useNavigate } from 'react-router';
 import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 
 export const AdminUserCreate = () => {
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -24,6 +26,10 @@ export const AdminUserCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setCreateSuccess('');
+    setAuthError(null);
+    setTimeout(() => {
+      navigate('/admin/users');
+    } , 2500);
     try {
       await adminCreateUser(formData);
       setCreateSuccess('Usuario creado correctamente.');
@@ -34,15 +40,15 @@ export const AdminUserCreate = () => {
 
   return (
     <>
+      <article className='flexColumn centeredContent'>
       <h1>Gestión de usuarios</h1>
-      <article>
         <h2>Crear nuevo usuario</h2>
 
         {createSuccess && <p className='successMessage'>{createSuccess}</p>}
         {authError && <p className='errorMessage'>{authError}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <div>
+        <form onSubmit={handleSubmit} className='flexColumn centeredContent'>
+          <div className='flexColumn'>
             <label htmlFor='name'>Nombre:</label>
             <input
               type='text'
@@ -55,7 +61,7 @@ export const AdminUserCreate = () => {
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='email'>Email:</label>
             <input
               type='email'
@@ -68,7 +74,7 @@ export const AdminUserCreate = () => {
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='password'>Contraseña:</label>
             <input
               type='password'
@@ -81,7 +87,7 @@ export const AdminUserCreate = () => {
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='role'>Role:</label>
             <select
               name='role'

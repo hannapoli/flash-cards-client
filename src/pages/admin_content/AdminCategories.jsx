@@ -72,38 +72,42 @@ export const AdminCategories = () => {
 
   return (
     <>
-      <h1>Gestión de categorías </h1>
-      <h2>{language && `${language.language}`}</h2>
-      <Link to={`/admin/categories/create/${language_id}`} state={{ language_id, language }}>
-        <button>Crear nueva categoría</button>
-      </Link>
-      <Link to="/admin/lang">
-        <button>Volver a idiomas</button>
-      </Link>
+      <section className='flexColumn'>
+        <div className='flexColumn centeredContent'>
+          <h1>Gestión de categorías </h1>
+          <h2>{language && `${language.language}`}</h2>
+          <p>Aquí puedes gestionar las categorías disponibles para este idioma.</p>
+          <Link to={`/admin/categories/create/${language_id}`} state={{ language_id, language }}>
+            <button className='confirmBtn marginTop longBtn'>Crear nueva categoría</button>
+          </Link>
+          <Link to='/admin/lang'>
+            <button className='confirmBtn longBtn'>Volver a idiomas</button>
+          </Link>
+        </div>
+        {loading && <p>Cargando categorías...</p>}
+        {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
+        {error && <p className='errorMessage'>{error}</p>}
 
-      {loading && <p>Cargando categorías...</p>}
-      {deleteSuccess && <p className="successMessage">{deleteSuccess}</p>}
-      {error && <p className="errorMessage">{error}</p>}
-
-      <section className="itemList">
-        {categories.length === 0 && !loading && <p>No hay categorías disponibles para este idioma.</p>}
-        {categories.map((cat) => (
-          <ItemList
-                    key={cat.id_category}
-                    itemObject={cat}
-                    itemName={cat.category}
-                    stateObject={{ category: cat, language_id, language }}
-                    onMainPath={`/admin/words/${cat.id_category}`}
-                    onModifyPath={`/admin/categories/modify/${cat.id_category}`}
-                    onDelete={openDeletePopup}
-                    />
-        ))}
+        <section className='itemList'>
+          {categories.length === 0 && !loading && <p>No hay categorías disponibles para este idioma.</p>}
+          {categories.map((cat) => (
+            <ItemList
+              key={cat.id_category}
+              itemObject={cat}
+              itemName={cat.category}
+              stateObject={{ category: cat, language_id, language }}
+              onMainPath={`/admin/words/${cat.id_category}`}
+              onModifyPath={`/admin/categories/modify/${cat.id_category}`}
+              onDelete={openDeletePopup}
+            />
+          ))}
+        </section>
       </section>
 
       {/* Popup para eliminar categoría */}
       {showDeletePopup && categoryToDelete && (
         <DeletePopUp
-          type="esta categoría"
+          type='esta categoría'
           item={categoryToDelete.category}
           onConfirm={handleDeleteCategory}
           onCancel={() => setShowDeletePopup(false)}

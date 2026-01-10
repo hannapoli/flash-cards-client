@@ -38,52 +38,52 @@ export const RegisterPage = () => {
 
   return (
     <>
+      <section className='flexColumn centeredContent'>
       <h1>¡Empieza a mejorar tu vocabulario hoy!</h1>
-      <section>
         <h2>Registrarse</h2>
 
-        {authError && <p className='errorMessage'>{authError}</p>} {/* Añadir la clase a Scss */}
+        {authError && <p className='errorMessage'>{authError}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <div>
+        <form onSubmit={handleSubmit} className='flexColumn centeredContent'>
+          <div className='flexColumn'>
             <label htmlFor='name'>Nombre:</label>
             <input
               type='text'
               name='name'
               id='name'
-              placeholder='Nombre'
+              placeholder='Escribe tu nombre...'
               value={formData.name}
               onChange={handleChange}
               noValidate
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='email'>Email:</label>
             <input
               type='email'
               name='email'
               id='email'
-              placeholder='Email'
+              placeholder='Escribe tu correo electrónico...'
               value={formData.email}
               onChange={handleChange}
               noValidate
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='password'>Contraseña:</label>
             <input
               type='password'
               name='password'
               id='password'
-              placeholder='Contraseña'
+              placeholder='Crea una contraseña segura...'
               value={formData.password}
               onChange={handleChange}
               noValidate
             />
           </div>
-          <button type='submit' disabled={loading}>
+          <button type='submit' disabled={loading} className='marginTop'>
             {loading ? 'Registrando...' : 'Registrarse'}
           </button>
         </form>

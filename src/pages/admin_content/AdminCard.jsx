@@ -3,7 +3,7 @@ import { Link, useLocation, useParams, useNavigate } from 'react-router';
 import { auth } from '../../firebase/firebaseConfig';
 import { useFetch } from '../../hooks/useFetch';
 import { DeletePopUp } from '../../components/DeletePopUp';
-import { WordCard } from "../../components/WordCard"
+import { WordCard } from '../../components/WordCard'
 
 export const AdminCard = () => {
   const location = useLocation();
@@ -74,7 +74,7 @@ export const AdminCard = () => {
       setShowDeletePopup(false);
       setDeleteSuccess('Palabra eliminada correctamente.');
       setTimeout(() => {
-        navigate(`/admin/words/${category_id}`, { state: { category, category_id, language, language_id }})
+        navigate(`/admin/words/${category_id}`, { state: { category, category_id, language, language_id } })
       }, 2000);
     } catch (err) {
       setError(err.message || 'Error al eliminar la palabra');
@@ -87,38 +87,41 @@ export const AdminCard = () => {
 
   return (
     <>
-      {loading && <p>Cargando la palabra...</p>}
-      {deleteSuccess && <p className="successMessage">{deleteSuccess}</p>}
-      {error && <p className="errorMessage">{error}</p>}
+      <section className='flexColumn'>
+        {loading && <p>Cargando la palabra...</p>}
+        {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
+        {error && <p className='errorMessage'>{error}</p>}
 
-      <WordCard
-        word={wordData.word}
-        definition={wordData.definition}
-        transcription={wordData.transcription}
-        example={wordData.example}
-        image_filename={wordData.image_filename}
-        image_url={wordData.image_url}
-        category_id={wordData.category_id}
-      />
+        <WordCard
+          word={wordData.word}
+          definition={wordData.definition}
+          transcription={wordData.transcription}
+          example={wordData.example}
+          image_filename={wordData.image_filename}
+          image_url={wordData.image_url}
+          category_id={wordData.category_id}
+        />
+        <div className='flexColumn centeredContent'>
+          <div>
+            <Link to={`/admin/words/modify/${word_id}`} state={{ word: word, category, category_id, language, language_id }}>
+              <button>Modificar la palabra</button>
+            </Link>
 
-      <div className='itemActions'>
-        <Link to={`/admin/words/modify/${word_id}`} state={{ word: word, category, category_id, language, language_id}}>
-          <button>Modificar la palabra</button>
-        </Link>
+            <button onClick={openDeletePopup} className='deleteBtn'>Eliminar la palabra</button>
+          </div>
 
-        <button onClick={openDeletePopup}>Eliminar la palabra</button>
-      </div>
-
-      <div>
-        <Link to={`/admin/words/${category_id}`} state={{ category, category_id, language, language_id }}>
-          <button>Volver a palabras</button>
-        </Link>
-      </div>
+          <div>
+            <Link to={`/admin/words/${category_id}`} state={{ category, category_id, language, language_id }}>
+              <button className='confirmBtn marginTop'>Volver a palabras</button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Popup para eliminar palabra */}
       {showDeletePopup && wordData.word && (
         <DeletePopUp
-          type="esta palabra"
+          type='esta palabra'
           item={wordData.word}
           onConfirm={handleDeleteWord}
           onCancel={() => setShowDeletePopup(false)}

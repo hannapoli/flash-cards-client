@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { useFetch } from "../../hooks/useFetch";
-import { auth } from "../../firebase/firebaseConfig";
+import { useFetch } from '../../hooks/useFetch';
+import { auth } from '../../firebase/firebaseConfig';
 
 export const AdminLangCreate = () => {
 
@@ -57,28 +57,28 @@ export const AdminLangCreate = () => {
 
     return (
         <>
+            <article className='flexColumn centeredContent'>
             <h1>Gestión de idiomas</h1>
-            <article>
                 <h2>Añadir nuevo idioma</h2>
 
                 {createSuccess && <p className='successMessage'>{createSuccess}</p>}
                 {createError && <p className='errorMessage'>{createError}</p>}
 
-                <form onSubmit={handleSubmit}>
-                    <div>
+                <form onSubmit={handleSubmit} className='flexColumn centeredContent'>
+                    <div className='flexColumn'>
                         <label htmlFor='language'>Idioma:</label>
                         <input
                             type='text'
                             name='language'
                             id='language'
-                            placeholder={`e.g. "Inglés"`}
+                            placeholder={`e.g. 'Inglés'`}
                             value={formData.language}
                             onChange={handleChange}
                             noValidate
                         />
                     </div>
 
-                    <div>
+                    <div className='flexColumn'>
                         <label htmlFor='code'>Código del idioma:</label>
                         <input
                             type='text'
@@ -90,12 +90,12 @@ export const AdminLangCreate = () => {
                             noValidate
                         />
                     </div>
-                    <button type='submit' disabled={createLoading} className='confirmBtn'>
+                    <button type='submit' disabled={createLoading} className='confirmBtn marginTop'>
                         {createLoading ? 'Creando...' : 'Crear idioma'}
                     </button>
                 </form>
-                <Link to="/admin/lang">
-                    <button>Volver a idiomas</button>
+                <Link to='/admin/lang'>
+                    <button className='confirmBtn'>Volver a idiomas</button>
                 </Link>
             </article>
         </>

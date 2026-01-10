@@ -1,6 +1,8 @@
+import './Header.scss'
+
 export const Header = ({ children }) => {
   return (
-    <header>
+    <header className='fullContainer'>
       {children}
     </header>
   )

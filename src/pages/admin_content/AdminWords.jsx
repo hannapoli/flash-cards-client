@@ -72,38 +72,42 @@ export const AdminWords = () => {
 
   return (
     <>
-      <h1>Gestión de palabras </h1>
-      <h2>{category && `${category.category}`}</h2>
-      <Link to={`/admin/words/create/${category_id}`} state={{ category_id, category, language, language_id }}>
-        <button>Crear nueva palabra</button>
-      </Link>
-      <Link to={`/admin/categories/${language_id}`} state={{ language, language_id }}>
-        <button>Volver a categorías</button>
-      </Link>
+      <section className='flexColumn'>
+        <div className='flexColumn centeredContent'>
+          <h1>Gestión de palabras </h1>
+          <h2>{category && `${category.category}`}</h2>
+          <p>Aquí puedes gestionar las palabras disponibles para esta categoría.</p>
+          <Link to={`/admin/words/create/${category_id}`} state={{ category_id, category, language, language_id }}>
+            <button className='confirmBtn marginTop longBtn'>Crear nueva palabra</button>
+          </Link>
+          <Link to={`/admin/categories/${language_id}`} state={{ language, language_id }}>
+            <button className='confirmBtn longBtn'>Volver a categorías</button>
+          </Link>
+        </div>
+        {loading && <p>Cargando palabras...</p>}
+        {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
+        {error && <p className='errorMessage'>{error}</p>}
 
-      {loading && <p>Cargando palabras...</p>}
-      {deleteSuccess && <p className="successMessage">{deleteSuccess}</p>}
-      {error && <p className="errorMessage">{error}</p>}
-
-      <section className="itemList">
-        {words.length === 0 && !loading && <p>No hay palabras disponibles para esta categoría.</p>}
-        {words.map((word) => (
-          <ItemList
-                    key={word.id_word}
-                    itemObject={word}
-                    itemName={word.word}
-                    stateObject={{ word: word, category, category_id, language, language_id}}
-                    onMainPath={`/admin/card/${word.id_word}`}
-                    onModifyPath={`/admin/words/modify/${word.id_word}`}
-                    onDelete={openDeletePopup}
-                    />
-        ))}
+        <section className='itemList'>
+          {words.length === 0 && !loading && <p>No hay palabras disponibles para esta categoría.</p>}
+          {words.map((word) => (
+            <ItemList
+              key={word.id_word}
+              itemObject={word}
+              itemName={word.word}
+              stateObject={{ word: word, category, category_id, language, language_id }}
+              onMainPath={`/admin/card/${word.id_word}`}
+              onModifyPath={`/admin/words/modify/${word.id_word}`}
+              onDelete={openDeletePopup}
+            />
+          ))}
+        </section>
       </section>
 
       {/* Popup para eliminar palabra */}
       {showDeletePopup && wordToDelete && (
         <DeletePopUp
-          type="esta palabra"
+          type='esta palabra'
           item={wordToDelete.word}
           onConfirm={handleDeleteWord}
           onCancel={() => setShowDeletePopup(false)}

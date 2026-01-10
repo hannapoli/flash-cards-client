@@ -1,0 +1,117 @@
+nav {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+nav li {
+    list-style: none;
+    padding: 0.4em;
+}
+
+.navLogo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navLogo:hover {
+    color: var(--color-accent);
+}
+
+.navMenu {
+    display: none;
+    position: absolute;
+    top: 4em;
+    left: 0;
+    right: 0;
+    background: var(--gradient-primary);
+    flex-direction: column;
+    padding-bottom: 1em;
+    gap: 0.5em;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navMenu.visible {
+    display: flex;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navMenu a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 0.5em 1em;
+    transition: all 0.3s ease;
+}
+
+.navMenu a:hover,
+.nav-link-active {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--color-white) !important;
+}
+
+.navMenuIcon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    padding: 0.5em;
+    transition: transform 0.3s ease;
+}
+
+.navMenuIcon:hover {
+    transform: scale(1.1);
+}
+
+.navMenuIcon span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* ===============================
+            768px
+=================================== */
+
+@media screen and (min-width: 768px) {
+
+    nav {
+        padding: 0 2rem;
+    }
+
+    .navMenu {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        box-shadow: none;
+        gap: 2rem;
+        padding: 0;
+        background: none;
+    }
+
+    .navMenuIcon {
+        display: none;
+    }
+}
+
+/* 768px */

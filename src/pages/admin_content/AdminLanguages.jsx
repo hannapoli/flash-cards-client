@@ -66,36 +66,40 @@ export const AdminLanguages = () => {
 
   return (
     <>
-      <h1>Gestión de idiomas</h1>
-      <p>Aquí puedes gestionar los idiomas disponibles en la plataforma.</p>
-      <Link to='/admin/lang/create'>
-        <button>Añadir nuevo idioma</button>
-      </Link>
-      <h2>Idiomas disponibles:</h2>
-      {loading && <p>Cargando idiomas...</p>}
-      {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
-      {error && <p className='errorMessage'>{error}</p>}
+      <section className='flexColumn'>
+        <div className='flexColumn centeredContent'>
+          <h1>Gestión de idiomas</h1>
+          <p>Aquí puedes gestionar los idiomas disponibles en la plataforma.</p>
+          <Link to='/admin/lang/create'>
+            <button className='marginTop confirmBtn'>Añadir nuevo idioma</button>
+          </Link>
+        </div>
+        <h2 className='marginTop'>Idiomas disponibles:</h2>
+        {loading && <p>Cargando idiomas...</p>}
+        {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
+        {error && <p className='errorMessage'>{error}</p>}
 
-      <section className='itemList'>
-        {languages.length === 0 && !loading && <p>No hay idiomas disponibles.</p>}
-        {languages.map((lang) => (
+        <section className='itemList'>
+          {languages.length === 0 && !loading && <p>No hay idiomas disponibles.</p>}
+          {languages.map((lang) => (
 
-          <ItemList
-            key={lang.id_language}
-            itemObject={lang}
-            itemName={lang.language}
-            stateObject={{ language: lang }}
-            onMainPath={`/admin/categories/${lang.id_language}`}
-            onModifyPath={`/admin/lang/modify/${lang.id_language}`}
-            onDelete={openDeletePopup}
-          />
-        ))}
+            <ItemList
+              key={lang.id_language}
+              itemObject={lang}
+              itemName={lang.language}
+              stateObject={{ language: lang }}
+              onMainPath={`/admin/categories/${lang.id_language}`}
+              onModifyPath={`/admin/lang/modify/${lang.id_language}`}
+              onDelete={openDeletePopup}
+            />
+          ))}
+        </section>
       </section>
 
       {/* Popup para eliminar idioma */}
       {showDeletePopup && languageToDelete && (
         <DeletePopUp
-          type="este idioma"
+          type='este idioma'
           item={languageToDelete.language}
           onConfirm={handleDeleteLanguage}
           onCancel={() => setShowDeletePopup(false)}

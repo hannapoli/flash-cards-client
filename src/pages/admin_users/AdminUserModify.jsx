@@ -1,3 +1,4 @@
+import {useNavigate } from 'react-router';
 import { useState } from 'react';
 import { useLocation } from 'react-router';
 import { useFetch } from '../../hooks/useFetch';
@@ -6,6 +7,7 @@ import { auth } from '../../firebase/firebaseConfig';
 export const AdminUserModify = () => {
   const location = useLocation();
   const { user: foundUser } = location.state || {};
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: foundUser?.name || '',
@@ -49,6 +51,9 @@ export const AdminUserModify = () => {
         token
       );
       setModifySuccess('Usuario modificado correctamente.');
+      setTimeout(() => {
+      navigate('/admin/users');
+    } , 2500);
     } catch (error) {
       setModifyError(error.message || 'Error al modificar el usuario.');
     } finally {
@@ -60,16 +65,15 @@ export const AdminUserModify = () => {
     <>
       <h1>Gestión de usuarios</h1>
 
-      <article className='userDetails'>
+      <article className='flexColumn centeredContent'>
         <h2>Modificar usuario</h2>
         {modifySuccess && <p className='successMessage'>{modifySuccess}</p>}
         {modifyError && <p className='errorMessage'>{modifyError}</p>}
 
-        <form onSubmit={handleModifyUser}>
-          <div>
+        <form onSubmit={handleModifyUser} className='flexColumn centeredContent'>
+          <div className='flexColumn'>
             <label htmlFor='firebase_uid'>Firebase UID:</label>
             <input
-              /* scss cursor: 'not-allowed' */
               type='text'
               id='firebase_uid'
               value={foundUser.firebase_uid}
@@ -78,7 +82,7 @@ export const AdminUserModify = () => {
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='name'>Nombre:</label>
             <input
               type='text'
@@ -92,7 +96,7 @@ export const AdminUserModify = () => {
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='email'>Email:</label>
             <input
               type='email'
@@ -106,7 +110,7 @@ export const AdminUserModify = () => {
             />
           </div>
 
-          <div>
+          <div className='flexColumn'>
             <label htmlFor='role'>Role:</label>
             <select
               id='role'

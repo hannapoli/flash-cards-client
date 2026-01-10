@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { Link, useLocation, useParams, useNavigate } from 'react-router';
-import { useFetch } from "../../hooks/useFetch";
-import { auth } from "../../firebase/firebaseConfig";
+import { useFetch } from '../../hooks/useFetch';
+import { auth } from '../../firebase/firebaseConfig';
 
 export const AdminCategoriesCreate = () => {
   const location = useLocation();
@@ -59,16 +59,16 @@ export const AdminCategoriesCreate = () => {
 
   return (
     <>
+      <article className='flexColumn centeredContent'>
       <h1>Gestión de categorías</h1>
-      <article>
         <h2>Añadir nueva categoría</h2>
-        <p>Idioma seleccionado: {language?.language}</p>
+        <p className='group'>Idioma seleccionado: {language?.language}</p>
 
         {createSuccess && <p className='successMessage'>{createSuccess}</p>}
         {createError && <p className='errorMessage'>{createError}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <div>
+        <form onSubmit={handleSubmit} className='flexColumn centeredContent'>
+          <div className='flexColumn'>
             <label htmlFor='category'>Categoría:</label>
             <input
               type='text'
@@ -80,13 +80,12 @@ export const AdminCategoriesCreate = () => {
               noValidate
             />
           </div>
-
-          <button type='submit' disabled={createLoading} className='confirmBtn'>
+          <button type='submit' disabled={createLoading} className='confirmBtn marginTop'>
             {createLoading ? 'Creando...' : 'Crear categoría'}
           </button>
         </form>
         <Link to={`/admin/categories/${language_id}`} state={{ language, language_id }}>
-          <button>Volver a categorías</button>
+          <button className='confirmBtn'>Volver a categorías</button>
         </Link>
       </article>
     </>

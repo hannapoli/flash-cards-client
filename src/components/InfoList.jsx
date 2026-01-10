@@ -1,25 +1,21 @@
 import { Link } from 'react-router';
-import './ItemList.scss'
+import './InfoList.scss';
 
-export const ItemList = ({
+export const InfoList = ({
     itemObject,
-    itemName,
     stateObject,
-    onMainPath,
     onModifyPath,
     onDelete
 
 }) => {
     return (
         <>
-            <article className='item flexColumn'>
-                <Link
-                    to={onMainPath}
-                    state={stateObject}
-                >
-                    <button className='itemBtn'>{itemName}</button>
-                </Link>
-                <div className='itemActions flexContainer'>
+            <article className='flexColumn centeredContent itemInfo'>
+                <h3>{itemObject.name}</h3>
+                <p><span className='bold'>UID:</span> {itemObject.firebase_uid}</p>
+                <p><span className='bold'>Email:</span> {itemObject.email}</p>
+                <p><span className='bold'>Role:</span> {itemObject.role}</p>
+                <div className='infoActions flexContainer'>
                     <Link
                         to={onModifyPath}
                         state={stateObject}>
@@ -29,7 +25,7 @@ export const ItemList = ({
                         Eliminar
                     </button>
                 </div>
-            </article>
+            </article >
         </>
     )
 }

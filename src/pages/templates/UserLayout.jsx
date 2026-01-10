@@ -8,7 +8,7 @@ export const UserLayout = () => {
             <Header>
                 <UserNav />
             </Header>
-            <main>
+            <main className='mainContainer flexColumn'>
                 <Outlet />
             </main>
         </>

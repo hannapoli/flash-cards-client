@@ -1,0 +1,46 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.8em;
+    gap: 0.5em;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p,
+footer a {
+    font-size: 0.9rem;
+    color: var(--color-white);
+}
+
+footer a:hover {
+    color: var(--color-accent);
+}
+/* ===============================
+            768px
+=================================== */
+@media screen and (min-width: 768px) {
+    footer {
+        padding: 1em;
+    }
+
+    footer p,
+    footer a {
+        font-size: 0.9rem;
+    }
+}
+/* 768px */
+/* ===============================
+            992px
+=================================== */
+@media screen and (min-width: 992px) {
+
+    footer p,
+    footer a {
+        font-size: 1rem;
+    }
+}
+/* 992px */
