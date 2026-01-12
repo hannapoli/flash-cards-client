@@ -31,6 +31,7 @@ export const AdminCard = () => {
   useEffect(() => {
     const loadCard = async () => {
       try {
+        setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
           `${backendUrl}/admin/word/get/${word_id}`,

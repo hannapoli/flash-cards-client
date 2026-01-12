@@ -8,7 +8,8 @@ const firebaseErrorMessages = {
     'auth/invalid-credential': 'Las credenciales proporcionadas no son válidas.',
     'auth/user-disabled': 'La cuenta ha sido deshabilitada.',
     'auth/too-many-requests': 'Demasiados intentos. Intenta de nuevo más tarde.',
-    'auth/operation-not-allowed': 'Operación no permitida. Contacta al administrador.'
+    'auth/operation-not-allowed': 'Operación no permitida. Contacta al administrador.',
+    'auth/id-token-expired': 'El token de autenticación ha expirado. Por favor, inicia sesión de nuevo.'
 };
 
 export function getFirebaseErrorMessage(error) {

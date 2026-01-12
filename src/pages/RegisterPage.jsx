@@ -39,7 +39,7 @@ export const RegisterPage = () => {
   return (
     <>
       <section className='flexColumn centeredContent'>
-      <h1>¡Empieza a mejorar tu vocabulario hoy!</h1>
+      <h1 className='marginTop'>¡Empieza a mejorar tu vocabulario hoy!</h1>
         <h2>Registrarse</h2>
 
         {authError && <p className='errorMessage'>{authError}</p>}
@@ -83,11 +83,11 @@ export const RegisterPage = () => {
               noValidate
             />
           </div>
-          <button type='submit' disabled={loading} className='marginTop'>
+          <button type='submit' disabled={loading} className='confirmBtn marginTop'>
             {loading ? 'Registrando...' : 'Registrarse'}
           </button>
         </form>
-        <div>
+        <div className='marginTop'>
           Ya tienes una cuenta? <Link to='/auth/login'>Inicia sesión</Link>
         </div>
       </section>

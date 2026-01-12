@@ -24,6 +24,7 @@ export const AdminCategories = () => {
   useEffect(() => {
     const loadCategories = async () => {
       try {
+        setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
           `${backendUrl}/admin/category/getall/${language_id}`,
@@ -88,8 +89,8 @@ export const AdminCategories = () => {
         {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
         {error && <p className='errorMessage'>{error}</p>}
 
+        {categories.length === 0 && !loading && <p className='marginTop'>No hay categorías disponibles para este idioma.</p>}
         <section className='itemList'>
-          {categories.length === 0 && !loading && <p>No hay categorías disponibles para este idioma.</p>}
           {categories.map((cat) => (
             <ItemList
               key={cat.id_category}

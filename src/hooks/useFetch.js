@@ -29,7 +29,7 @@ export const useFetch = () => {
         options.headers['Authorization'] = `Bearer ${token}`;
       }
 
-      if (body && (method === 'POST' || method === 'PUT' || method === 'DELETE')) {
+      if (body && (method === 'POST' || method === 'PUT' || method === 'DELETE' || method === 'PATCH')) {
         options.body = JSON.stringify(body);
       }
 

@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router'
-import { AdminCard, AdminCategories, AdminCategoriesCreate, AdminCategoriesModify, AdminDashboardPage, AdminLangCreate, AdminLangModify, AdminLanguages, AdminUserCreate, AdminUserManagement, AdminUserModify, AdminWords, AdminWordsCreate, AdminWordsModify, HomePage, LoginPage, RegisterPage, UserDashboardPage } from '../pages'
+import { AdminCard, AdminCategories, AdminCategoriesCreate, AdminCategoriesModify, AdminDashboardPage, AdminLangCreate, AdminLangModify, AdminLanguages, AdminUserCreate, AdminUserManagement, AdminUserModify, AdminWords, AdminWordsCreate, AdminWordsModify, HomePage, LoginPage, RegisterPage, UserDashboardPage, UserCategories, UserWords, UserWordCard } from '../pages'
 import { AdminLayout } from '../pages/templates/AdminLayout'
 import { UserLayout } from '../pages/templates/UserLayout'
 import { PrivateRoutes } from './PrivateRoutes'
@@ -43,7 +43,6 @@ export const AppRoutes = () => {
                     <Route path='card/:word_id' element={<AdminCard />} />
                 </Route>
 
-                {/* Rutas protegidas para el rol de usuario */}
                 <Route
                     path='/user'
                     element={
@@ -53,7 +52,9 @@ export const AppRoutes = () => {
                     }
                 >
                     <Route path='dashboard' element={<UserDashboardPage />} />
-                    {/* otras rutas de user */}
+                            <Route path='lang/:language_id/categories' element={<UserCategories />} />
+                            <Route path='lang/:language_id/categories/:category_id/words' element={<UserWords />} />
+                            <Route path='lang/:language_id/categories/:category_id/words/:word_id' element={<UserWordCard />} />
                 </Route>
 
                 {/* Ruta de redirección */}

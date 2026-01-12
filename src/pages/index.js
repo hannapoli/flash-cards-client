@@ -23,3 +23,6 @@ export * from './admin_content/AdminWordsModify.jsx';
 export * from './admin_content/AdminCard.jsx';
 
 export * from './UserDashboardPage.jsx';
+export * from './user_learning/UserCategories.jsx';
+export * from './user_learning/UserWords.jsx';
+export * from './user_learning/UserWordCard.jsx';

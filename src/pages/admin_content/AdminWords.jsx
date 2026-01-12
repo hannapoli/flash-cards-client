@@ -24,6 +24,7 @@ export const AdminWords = () => {
   useEffect(() => {
     const loadWords = async () => {
       try {
+        setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
           `${backendUrl}/admin/word/getall/${category_id}`,
@@ -88,8 +89,8 @@ export const AdminWords = () => {
         {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
         {error && <p className='errorMessage'>{error}</p>}
 
+          {words.length === 0 && !loading && <p className='marginTop'>No hay palabras disponibles para esta categoría.</p>}
         <section className='itemList'>
-          {words.length === 0 && !loading && <p>No hay palabras disponibles para esta categoría.</p>}
           {words.map((word) => (
             <ItemList
               key={word.id_word}

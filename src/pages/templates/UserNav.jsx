@@ -31,13 +31,6 @@ export const UserNav = () => {
                     <NavLink
                         to='/user/dashboard'
                         className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
-                        Panel de control
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/user/lang'
-                        className={({ isActive }) => isActive ? 'nav-link-active' : ''}>
                         Idiomas
                     </NavLink>
                 </li>

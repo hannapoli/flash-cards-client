@@ -45,43 +45,43 @@ export const LoginPage = () => {
   return (
     <>
       <section className='flexColumn centeredContent'>
-      <h1>¡Empieza a mejorar tu vocabulario hoy!</h1>
+        <h1 className='marginTop'>¡Empieza a mejorar tu vocabulario hoy!</h1>
         <h2>Iniciar sesión</h2>
 
-        {message && <p className='successMessage'>{message}</p>} {/* Añadir clase */}
-        {authError && <p className='errorMessage'>{authError}</p>} {/* Añadir la clase a Scss */}
+        {message && <p className='successMessage'>{message}</p>}
+        {authError && <p className='errorMessage'>{authError}</p>}
 
-        <form onSubmit={handleSubmit} className='flexColumn'>
+        <form onSubmit={handleSubmit} className='flexColumn centeredContent'>
           <div className='flexColumn'>
             <label htmlFor='email'>Email:</label>
-          <input
-            type='email'
-            name='email'
-            id='email'
-            placeholder='Email'
-            value={formData.email}
-            onChange={handleChange}
-            noValidate
-          />
+            <input
+              type='email'
+              name='email'
+              id='email'
+              placeholder='Email'
+              value={formData.email}
+              onChange={handleChange}
+              noValidate
+            />
           </div>
 
           <div className='flexColumn'>
             <label htmlFor='password'>Contraseña:</label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            placeholder='Contraseña'
-            value={formData.password}
-            onChange={handleChange}
-            noValidate
-          />
+            <input
+              type='password'
+              name='password'
+              id='password'
+              placeholder='Contraseña'
+              value={formData.password}
+              onChange={handleChange}
+              noValidate
+            />
           </div>
-          <button type='submit' disabled={loading}>
-            {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
-          </button>
+            <button type='submit' disabled={loading} className='confirmBtn marginTop'>
+              {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+            </button>
         </form>
-        <div>
+        <div className='marginTop'>
           ¿No tienes una cuenta? <Link to='/auth/register'>Regístrate</Link>
         </div>
       </section>

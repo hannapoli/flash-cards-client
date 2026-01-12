@@ -20,6 +20,7 @@ export const AdminLanguages = () => {
   useEffect(() => {
     const loadLanguages = async () => {
       try {
+        setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
           `${backendUrl}/admin/lang/getall`,
@@ -79,8 +80,8 @@ export const AdminLanguages = () => {
         {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
         {error && <p className='errorMessage'>{error}</p>}
 
+        {languages.length === 0 && !loading && <p className='marginTop'>No hay idiomas disponibles.</p>}
         <section className='itemList'>
-          {languages.length === 0 && !loading && <p>No hay idiomas disponibles.</p>}
           {languages.map((lang) => (
 
             <ItemList
