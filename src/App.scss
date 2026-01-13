@@ -17,7 +17,7 @@
 .fullContainer {
     width: 100%;
     background: var(--gradient-primary);
-    height: 4em;
+    height: 3.7em;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,7 +30,7 @@
     margin: 0 auto 2em auto;
     max-width: 90%;
     padding: 1.5em;
-    padding-bottom: 7em;
+    padding-bottom: 6em;
 }
 
 .group {
@@ -74,12 +74,18 @@
 }
 
 .bigBtn {
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.7em 1.7em;
 }
 
 .longBtn {
     width: 220px;
+}
+
+.smallBtn {
+    font-size: 0.9rem;
+    width: 80px;
+    padding: 1em 1.5em;
 }
 
 /* Mensajes*/

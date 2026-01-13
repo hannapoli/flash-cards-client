@@ -102,7 +102,7 @@ export const AdminCard = () => {
           image_url={wordData.image_url}
           category_id={wordData.category_id}
         />
-        <div className='flexColumn centeredContent'>
+        <div className='flexColumn centeredContent marginTop'>
           <div>
             <Link to={`/admin/words/modify/${word_id}`} state={{ word: word, category, category_id, language, language_id }}>
               <button>Modificar la palabra</button>

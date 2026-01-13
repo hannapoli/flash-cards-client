@@ -22,15 +22,45 @@ export const UserWordCard = () => {
   });
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
+  const [isRevealed, setIsRevealed] = useState(false);
+  const [savedWords, setSavedWords] = useState([]);
+
+  //Mostrar y esconder la tarjeta de la palabra
+  const toggleReveal = () => {
+    setIsRevealed(!isRevealed);
+  };
 
   const { fetchData, loading } = useFetch();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  useEffect(() => {
+    if (category_id) {
+      loadSavedWords();
+    }
+  }, [category_id, backendUrl, fetchData]);
 
   useEffect(() => {
     if (word_id) {
       loadWordCard();
     }
   }, [word_id, backendUrl, fetchData]);
+
+  const loadSavedWords = async () => {
+    try {
+      const token = await auth.currentUser?.getIdToken();
+      const response = await fetchData(
+        `${backendUrl}/user/categories/${category_id}/words`,
+        'GET',
+        null,
+        token
+      );
+      const allWords = response.words || [];
+      const saved = allWords.filter(w => w.status === 'saved');
+      setSavedWords(saved);
+    } catch (err) {
+      console.error('Error loading saved words:', err);
+    }
+  };
 
   const loadWordCard = async () => {
     try {
@@ -45,14 +75,14 @@ export const UserWordCard = () => {
       const wordInfo = response.wordCard;
       // console.log(wordInfo);
       setWordData({
-        id_word: wordInfo.id_word || null,
-        word: wordInfo.word || '',
-        definition: wordInfo.definition || '',
-        transcription: wordInfo.transcription || '',
-        example: wordInfo.example || '',
-        category_id: wordInfo.category_id || '',
-        image_url: response.img_url || null,
-        status: wordInfo.status || null
+        id_word: wordInfo?.id_word || null,
+        word: wordInfo?.word || '',
+        definition: wordInfo?.definition || '',
+        transcription: wordInfo?.transcription || '',
+        example: wordInfo?.example || '',
+        category_id: wordInfo?.category_id || '',
+        image_url: response?.img_url || null,
+        status: wordInfo?.status || null
       });
     } catch (err) {
       setError(err.message || 'Error al cargar palabra');
@@ -111,24 +141,36 @@ export const UserWordCard = () => {
       setSuccessMessage('¡Palabra marcada como aprendida!');
       setTimeout(() => setSuccessMessage(''), 2000);
       await loadWordCard();
+      await loadSavedWords();
     } catch (err) {
       setError(err.message || 'Error al marcar como aprendida');
     }
   };
 
+  const handleNextWord = () => {
+    if (savedWords.length === 0) return;
+
+    const otherWords = savedWords.filter(w => w.id_word !== parseInt(word_id));
+    if (otherWords.length === 0) return;
+
+    const randomIndex = Math.floor(Math.random() * otherWords.length);
+    const nextWord = otherWords[randomIndex];
+    setIsRevealed(false);
+    navigate(`/user/lang/${language_id}/categories/${category_id}/words/${nextWord.id_word}`,
+      { state: { word: nextWord, category, language } });
+  };
+
   return (
     <>
       <section className='flexColumn centeredContent'>
-        <Link to={`/user/lang/${language_id}/categories/${category_id}/words`}
-          state={{ category, language }}>
-          <button className='marginTop'>Volver a palabras</button>
-        </Link>
         {loading && <p>Cargando palabra...</p>}
         {successMessage && <p className='successMessage'>{successMessage}</p>}
         {error && <p className='errorMessage'>{error}</p>}
 
         {wordData && (
           <>
+
+
             <WordCard
               word={wordData.word}
               definition={wordData.definition}
@@ -137,37 +179,52 @@ export const UserWordCard = () => {
               image_filename={wordData.image_filename}
               image_url={wordData.image_url}
               category_id={wordData.category_id}
+              status={wordData.status}
+              isRevealed={isRevealed}
+              onToggleReveal={toggleReveal}
             />
 
-            <div className='btns centeredContent'>
+            <div className='btns centeredContent marginBottom'>
               {!wordData.status && (
-                <button onClick={handleAddWord} className='confirmBtn bigBtn longBtn'>
-                  Añadir a mi colección ➕
+                <button onClick={handleAddWord} className='confirmBtn smallBtn'>
+                  ➕
                 </button>
               )}
 
               {wordData.status === 'saved' && (
                 <>
-                  <button onClick={handleMarkAsLearned} className='confirmBtn bigBtn longBtn'>
-                    Marcar como aprendida ✔️
+                  <button onClick={handleMarkAsLearned} className='confirmBtn smallBtn'>
+                    ✔️
                   </button>
-                  <button onClick={handleRemoveWord} className='deleteBtn bigBtn longBtn'>
-                    Eliminar de mi colección
+                  <button onClick={handleRemoveWord} className='deleteBtn smallBtn'>
+                    🗑️
                   </button>
                 </>
               )}
 
               {wordData.status === 'learned' && (
                 <>
-                  <p className='successMessage'>¡Palabra aprendida! ✔️</p>
-                  <button onClick={handleRemoveWord} className='deleteBtn bigBtn longBtn'>
-                    Eliminar de mi colección
+                  <div>
+                    <p className='successMessage longBtn'>¡Palabra aprendida! ✔️</p>
+                  </div>
+                  <button onClick={handleRemoveWord} className='deleteBtn smallBtn'>
+                    🗑️
                   </button>
                 </>
+              )}
+
+              {wordData.status === 'saved' && savedWords.length > 1 && (
+                <button onClick={handleNextWord} className='confirmBtn smallBtn'>
+                  ➡️
+                </button>
               )}
             </div>
           </>
         )}
+        <Link to={`/user/lang/${language_id}/categories/${category_id}/words`}
+          state={{ category, language }}>
+          <button className='marginTop longBtn'>Volver a palabras</button>
+        </Link>
       </section>
     </>
   )

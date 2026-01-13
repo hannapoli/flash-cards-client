@@ -39,6 +39,7 @@ const RAW_RUNTIME_STATE =
           ["flash-cards-client", "workspace:."],\
           ["globals", "npm:16.5.0"],\
           ["react", "npm:19.2.3"],\
+          ["react-circular-progressbar", "virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:2.2.0"],\
           ["react-dom", "virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:19.2.3"],\
           ["react-router", "virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:7.11.0"],\
           ["sass", "npm:1.97.2"],\
@@ -3261,6 +3262,7 @@ const RAW_RUNTIME_STATE =
           ["flash-cards-client", "workspace:."],\
           ["globals", "npm:16.5.0"],\
           ["react", "npm:19.2.3"],\
+          ["react-circular-progressbar", "virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:2.2.0"],\
           ["react-dom", "virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:19.2.3"],\
           ["react-router", "virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:7.11.0"],\
           ["sass", "npm:1.97.2"],\
@@ -4097,6 +4099,28 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/react-npm-19.2.3-0ecd9e5a6e-10c0.zip/node_modules/react/",\
         "packageDependencies": [\
           ["react", "npm:19.2.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-circular-progressbar", [\
+      ["npm:2.2.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/react-circular-progressbar-npm-2.2.0-f1392f9edc-10c0.zip/node_modules/react-circular-progressbar/",\
+        "packageDependencies": [\
+          ["react-circular-progressbar", "npm:2.2.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:2.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-circular-progressbar-virtual-6b39d03be7/4/.yarn/berry/cache/react-circular-progressbar-npm-2.2.0-f1392f9edc-10c0.zip/node_modules/react-circular-progressbar/",\
+        "packageDependencies": [\
+          ["@types/react", "npm:19.2.7"],\
+          ["react", "npm:19.2.3"],\
+          ["react-circular-progressbar", "virtual:8b30d3af5b638afb73b28a3621d9dd5effa40d2ddc579bcc2b1096976bdb97be6ed6c4c3a38442ececf9c83d210f96f126436268ef0d89e8eac12323780b65e3#npm:2.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\

@@ -1,0 +1,29 @@
+$size: 3em;
+
+.progressContainer,
+.completed {
+    height: $size
+}
+
+.completed, .completedBig {
+    text-align: center;
+}
+
+.progressContainer {
+    width: $size;
+}
+
+.completed {
+    font-size: $size * 0.6;
+    width: 2em
+}
+
+.progressContainerBig {
+    width: $size * 1.2;
+    height: $size * 1.2;
+}
+
+.completedBig {
+    font-size: $size * 1.2;
+    width: 3.5em;
+}   
