@@ -41,13 +41,12 @@ export const UserWords = () => {
       setWords(response.words || []);
 
       const progressResult = await fetchData(
-        `${backendUrl}/user/progress/languages/${language_id}/categories`,
+        `${backendUrl}/user/progress/categories/${category_id}`,
         'GET',
         null,
         token
       );
-      const categoryProgress = (progressResult.progress || []).find(cat => cat.id_category === Number(category_id));
-      setProgressPercentage(categoryProgress?.progressPercentage ?? 0);
+      setProgressPercentage(progressResult?.progressPercentage ?? 0);
     } catch (err) {
       setError('Error al cargar palabras');
     }
@@ -229,7 +228,7 @@ export const UserWords = () => {
         {learnedWords.length > 0 && (
           <article>
             <h2 className='marginTop'>Palabras aprendidas:</h2>
-            <p>¡Enhorabuena! Has aprendido todas estas palabras!.</p>
+            <p>¡Enhorabuena! Has aprendido todas estas palabras.</p>
 
             <section className='itemList'>
               {learnedWords.map((word) => (
