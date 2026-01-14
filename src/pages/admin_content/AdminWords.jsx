@@ -89,7 +89,7 @@ export const AdminWords = () => {
         {deleteSuccess && <p className='successMessage'>{deleteSuccess}</p>}
         {error && <p className='errorMessage'>{error}</p>}
 
-          {words.length === 0 && !loading && <p className='marginTop'>No hay palabras disponibles para esta categoría.</p>}
+        {words.length === 0 && !loading && <p className='marginTop'>No hay palabras disponibles para esta categoría.</p>}
         <section className='itemList'>
           {words.map((word) => (
             <ItemList

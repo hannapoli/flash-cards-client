@@ -22,6 +22,7 @@
     --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
     //Mensaje de error, botón de eliminar
     --gradient-error: linear-gradient(135deg, var(--color-error) 0%, var(--color-accent) 100%);
+    --gradient-light-alt: linear-gradient(135deg, var(--color-error) 0%, var(--color-primary) 100%);
 
     /* Tipografía */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

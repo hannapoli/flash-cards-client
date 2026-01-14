@@ -52,7 +52,8 @@
     width: 200px;
 }
 
-.confirmBtn:hover {
+.confirmBtn:hover,
+.searchBtn:hover {
     background: linear-gradient(135deg, #C5ACD3 0%, #9599CC 100%);
 }
 
@@ -86,6 +87,16 @@
     font-size: 0.9rem;
     width: 80px;
     padding: 1em 1.5em;
+}
+
+.searchBtn {
+    background: var(--gradient-light-alt);
+    padding: 0.7em 1.5em;
+    margin-left: 1em;
+}
+
+.searchInput {
+    max-width: 20em;
 }
 
 /* Mensajes*/

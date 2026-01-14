@@ -15,6 +15,9 @@ export const UserWords = () => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [progressPercentage, setProgressPercentage] = useState(progress);
+  const [search, setSearch] = useState('');
+  const [foundWord, setFoundWord] = useState(null);
+  const [searchError, setSearchError] = useState('');
 
   const { fetchData, loading } = useFetch();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -104,6 +107,26 @@ export const UserWords = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchError('');
+    setFoundWord(null);
+    
+    if (!search.trim()) {
+      setSearchError('Por favor, escribe una palabra para buscar');
+      return;
+    }
+
+    const searchTerm = search.toLowerCase().trim();
+    const found = words.find(w => w.word.toLowerCase() === searchTerm);
+    
+    if (found) {
+      setFoundWord(found);
+    } else {
+      setSearchError(`No se encontró la palabra "${search}"`);
+    }
+  };
+
   const savedWords = words.filter(w => w.status === 'saved');
   const learnedWords = words.filter(w => w.status === 'learned');
   const availableWords = words.filter(w => !w.status);
@@ -122,8 +145,39 @@ export const UserWords = () => {
             textSize={'2.2rem'}
           />
           {progressPercentage !== 100 && (
-            <p>Añade palabras a tu colección y márcalas como aprendidas.</p>
-          )}
+            
+              <p>Añade palabras a tu colección y márcalas como aprendidas.</p>
+            )}
+              <form className='flexContainer centeredContent marginTop' onSubmit={handleSearch}>
+                <div className='flexColumn'>
+                  <input
+                    type="text"
+                    placeholder="Buscar palabras..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    noValidate
+                    className='searchInput'
+                  />
+                </div>
+                <div>
+                  <button type='submit' className='searchBtn '>
+                    Buscar
+                  </button>
+                </div>
+              </form>
+              {searchError && <p className='errorMessage marginTop'>{searchError}</p>}
+              {foundWord && (
+                <div className='foundWord flexColumn centeredContent marginTop'>
+                  <h3>Palabra encontrada:</h3>
+                  <Link to={`/user/lang/${language_id}/categories/${category_id}/words/${foundWord.id_word}`}
+                    state={{ word: foundWord, category, language }}>
+                    <button className='labelUpload bigBtn longBtn'>
+                      {foundWord.word} {foundWord.status === 'saved' ? '⭐️' : foundWord.status === 'learned' ? '✔️' : ''}
+                    </button>
+                  </Link>
+                  <p>Estado: {foundWord.status === 'saved' ? 'En tu colección' : foundWord.status === 'learned' ? 'Aprendida' : 'Disponible'}</p>
+                </div>
+              )}
           <Link to={`/user/lang/${language_id}/categories`} state={{ language }}>
             <button className='marginTop'>Volver a categorías</button>
           </Link>
@@ -192,7 +246,7 @@ export const UserWords = () => {
             </section>
           </article>
         )}
-      </section>
+      </section >
     </>
   )
 }

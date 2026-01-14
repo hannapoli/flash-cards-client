@@ -32,7 +32,10 @@ export const UserDashboardPage = () => {
             token
           )
         ]);
-        setUserLanguages(userLangResponse.progress || []);
+        const validUserLanguages = (userLangResponse.progress || []).filter(lang => 
+          lang.progressPercentage > 0 || lang.totalWords > 0
+        );
+        setUserLanguages(validUserLanguages);
         setAvailableLanguages(availableLangResponse.availableLanguages || []);
       } catch (err) {
         setError(err.message || 'Error al cargar idiomas');
