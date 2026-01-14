@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Aplicación &quot;Flash Cards&quot; en React</h1>
+<p>Aplicación web desarrollada con el stack de PERN (PostgreSQL, Express, React, y Node.js) que permite a los usuarios crear, gestionar y practicar con tarjetas de palabras (flashcards) para facilitar el aprendizaje de nuevos idiomas. La aplicación incluye funcionalidades de autenticación de usuarios, gestión de tarjetas y sesiones de práctica interactivas.</p>
+<h2>Instalación</h2>
+<ol>
+<li>
+<p>Clona el repositorio y navega al directorio del proyecto:</p>
+<pre class="prettyprint source lang-bash"><code>git clone git@github.com:hannapoli/flash-cards-client.git && cd flash-cards-client
+</code></pre>
+</li>
+<li>
+<p>Cambia a la rama develop y actualízala:</p>
+<pre class="prettyprint source lang-bash"><code>git checkout develop && git pull origin develop
+</code></pre>
+</li>
+<li>
+<p>Instala las dependencias:</p>
+<pre class="prettyprint source lang-bash"><code>yarn install
+</code></pre>
+</li>
+<li>
+<p>Configura las variables de entorno:</p>
+<ul>
+<li>Duplica el archivo <code>.env.template</code> y renómbralo a <code>.env</code></li>
+<li>Completa las siguientes variables con los datos de tu proyecto Firebase:<pre class="prettyprint source lang-env"><code>VITE_BACKEND_URL=http://localhost:3000
+
+Los datos del Firebase:
+VITE_FIREBASE_API_KEY=tu-api-key
+VITE_FIREBASE_AUTH_DOMAIN=tu-project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=tu-project-id
+VITE_FIREBASE_STORAGE_BUCKET=tu-project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=123456789
+VITE_FIREBASE_APP_ID=1:123456789:web:abcdef
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Asegúrate de que el backend esté corriendo en su puerto: <code>http://localhost:3000</code></p>
+</li>
+<li>
+<p>Inicia la aplicación en modo desarrollo:</p>
+<pre class="prettyprint source lang-bash"><code>yarn dev
+</code></pre>
+</li>
+<li>
+<p>La aplicación estará disponible en <code>http://localhost:5173</code></p>
+</li>
+</ol>
+<h2>¿Qué hace esta aplicación?</h2>
+<p><strong>Flash Cards</strong> es una plataforma interactiva de aprendizaje de idiomas que permite a los usuarios:</p>
+<h3>Para Usuarios Estándar:</h3>
+<ul>
+<li>Registrarse e iniciar sesión con Firebase Authentication</li>
+<li>Explorar idiomas y categorías disponibles</li>
+<li>Crear su colección personal de palabras</li>
+<li>Estudiar palabras con tarjetas interactivas (flash cards)</li>
+<li>Marcar palabras como aprendidas</li>
+<li>Ver su progreso en tiempo real por categoría y idioma</li>
+<li>Buscar palabras específicas dentro de categorías</li>
+<li>Visualizar definiciones, transcripciones, ejemplos e imágenes de cada palabra</li>
+</ul>
+<h3>Para Administradores:</h3>
+<ul>
+<li>Gestión completa de usuarios (crear, editar, eliminar, cambiar roles)</li>
+<li>Gestión de idiomas (añadir nuevos idiomas al sistema)</li>
+<li>Gestión de categorías por idioma</li>
+<li>Gestión de palabras (CRUD completo con subida de imágenes)</li>
+<li>Administración de contenidos</li>
+</ul>
+<h3>Características:</h3>
+<ul>
+<li>Sistema de progreso visual con barras circulares (react-circular-progressbar)</li>
+<li>Buscador de palabras dentro de cada categoría</li>
+<li>Separación de palabras: disponibles, en colección, y aprendidas</li>
+<li>Reconocimiento visual a la hora de aprender las palabra de la colección</li>
+<li>Diseño intuitivo y responsive (Mobile First)</li>
+<li>Feedback visual (mensajes de éxito/error)</li>
+<li>CRUD completo sobre múltiples entidades</li>
+<li>Validación de formularios</li>
+<li>Confirmación antes de eliminar (popup modal)</li>
+<li>Búsqueda en tiempo real</li>
+</ul>
+<h2>Arquitectura y Flujo de Usuario</h2>
+<h3>Sección Pública</h3>
+<ul>
+<li><strong>Inicio/Home Page</strong>: Página de bienvenida visible sin login</li>
+<li><strong>Login/Registro</strong>: Formularios de autenticación</li>
+</ul>
+<h3>Sección Privada - Usuario</h3>
+<ol>
+<li><strong>Dashboard de Idiomas</strong>: Vista de idiomas disponibles y progreso</li>
+<li><strong>Vista de Categorías</strong>: Categorías por idioma con progreso</li>
+<li><strong>Vista de Palabras</strong>: Lista de palabras disponibles y en colección</li>
+<li><strong>Tarjeta de Palabra</strong>: Vista detallada con imagen, definición, transcripción y ejemplo</li>
+</ol>
+<h3>Sección Privada - Administrador</h3>
+<ol>
+<li><strong>Panel de Administración</strong>: Dashboard con acceso a todas las funcionalidades</li>
+<li><strong>Gestión de Usuarios</strong>: CRUD completo de usuarios</li>
+<li><strong>Gestión de Contenido</strong>: CRUD de idiomas, categorías y palabras</li>
+<li><strong>Subida de Imágenes</strong>: Sistema de upload para ilustrar palabras</li>
+</ol>
+<h2>Estructura del Proyecto</h2>
+<pre class="prettyprint source"><code>flash-cards-client/
+├── src/
+│   ├── main.jsx               # Punto de entrada
+│   ├── App.jsx                # Componente principal
+│   ├── components/            # Componentes reutilizables
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   ├── ProgressComponent.jsx
+│   │   ├── WordCard.jsx
+│   │   ├── DeletePopUp.jsx
+│   │   └── ...
+│   ├── pages/                 # Páginas/Vistas
+│   │   ├── HomePage.jsx
+│   │   ├── LoginPage.jsx
+│   │   ├── RegisterPage.jsx
+│   │   ├── UserDashboardPage.jsx
+│   │   ├── AdminDashboardPage.jsx
+│   │   ├── user_learning/     # Páginas de usuario
+│   │   │   ├── UserCategories.jsx
+│   │   │   ├── UserWords.jsx
+│   │   │   └── UserWordCard.jsx
+│   │   └── admin_content/     # Páginas de admin
+│   │       ├── AdminLanguages.jsx
+│   │       ├── AdminCategories.jsx
+│   │       └── AdminWords.jsx
+│   ├── contexts/              # Context API
+│   │   ├── AuthContext.js
+│   │   └── AuthProvider.jsx
+│   ├── routes/                # Configuración de rutas
+│   │   ├── AppRoutes.jsx
+│   │   └── PrivateRoutes.jsx
+│   ├── hooks/                 # Hooks
+│   │   ├── useAuth.js
+│   │   └── useFetch.js
+│   ├── firebase/              # Configuración de Firebase
+│   │   └── firebaseConfig.js
+│   ├── helpers/               # Funciones auxiliares
+│   │   ├── firebaseErrorMessages.js
+│   │   └── findUidByEmail.js
+│   └── assets/                # Recursos estáticos
+├── public/
+├── index.html
+├── vite.config.js
+└── package.json
+</code></pre>
+<h2>Rutas de la Aplicación</h2>
+<h3>Rutas Públicas</h3>
+<ul>
+<li><code>/</code> - Página de inicio (pública)</li>
+<li><code>/login</code> - Inicio de sesión</li>
+<li><code>/register</code> - Registro de usuario</li>
+</ul>
+<h3>Rutas Protegidas - Usuario</h3>
+<ul>
+<li><code>/user/dashboard</code> - Dashboard con idiomas del usuario</li>
+<li><code>/user/lang/:language_id/categories</code> - Categorías de un idioma</li>
+<li><code>/user/lang/:language_id/categories/:category_id/words</code> - Palabras de una categoría</li>
+<li><code>/user/lang/:language_id/categories/:category_id/words/:word_id</code> - Tarjeta de palabra con detalles</li>
+</ul>
+<h3>Rutas Protegidas - Administrador</h3>
+<ul>
+<li><code>/admin/dashboard</code> - Panel de administración</li>
+<li><code>/admin/users</code> - Gestión de usuarios</li>
+<li><code>/admin/languages</code> - Gestión de idiomas</li>
+<li><code>/admin/categories</code> - Gestión de categorías</li>
+<li><code>/admin/words</code> - Gestión de palabras</li>
+<li><code>/admin/words/create</code> - Crear palabra con imagen</li>
+<li><code>/admin/words/:id/edit</code> - Editar palabra</li>
+</ul>
+<h2>Gestión de Estado</h2>
+<h3>Context API - AuthContext</h3>
+<p>Gestiona el estado global de autenticación:</p>
+<ul>
+<li>Estado del usuario (user, role, isLogged)</li>
+<li>Funciones de autenticación (login, register, logout)</li>
+<li>Persistencia de sesión</li>
+<li>Sincronización con Firebase</li>
+</ul>
+<h3>Custom Hooks</h3>
+<p><strong>useAuth</strong></p>
+<ul>
+<li>Hook para acceder al contexto de autenticación</li>
+<li>Proporciona información del usuario y funciones de auth</li>
+</ul>
+<p><strong>useFetch</strong></p>
+<ul>
+<li>Hook reutilizable para peticiones HTTP</li>
+<li>Gestiona loading, error y data states</li>
+<li>Incluye token de autenticación automáticamente</li>
+</ul>
+<h2>Firebase Authentication</h2>
+<p>La aplicación utiliza Firebase para:</p>
+<ol>
+<li><strong>Registro de usuarios</strong>: <code>createUserWithEmailAndPassword</code></li>
+<li><strong>Inicio de sesión</strong>: <code>signInWithEmailAndPassword</code></li>
+<li><strong>Persistencia de sesión</strong>: <code>onAuthStateChanged</code></li>
+<li><strong>Tokens de autenticación</strong>: <code>getIdToken()</code> para peticiones al backend</li>
+<li><strong>Cierre de sesión</strong>: <code>signOut</code></li>
+</ol>
+<p><strong>Flujo de autenticación:</strong></p>
+<ol>
+<li>Usuario se registra/inicia sesión en Firebase</li>
+<li>Firebase devuelve un token JWT</li>
+<li>Cliente incluye el token en cada petición al backend</li>
+<li>Backend verifica el token y consulta PostgreSQL para roles y datos</li>
+</ol>
+<h2>Tecnologías Utilizadas</h2>
+<h3>Core</h3>
+<ul>
+<li><strong>React 18</strong> - Librería de UI</li>
+<li><strong>Vite</strong> - Build tool y dev server</li>
+<li><strong>React Router v7</strong> - Enrutamiento</li>
+</ul>
+<h3>Estado y Datos</h3>
+<ul>
+<li><strong>React Context API</strong> - Gestión de estado global</li>
+<li><strong>Custom Hooks</strong> - Lógica reutilizable (useAuth, useFetch)</li>
+</ul>
+<h3>Autenticación</h3>
+<ul>
+<li><strong>Firebase Authentication</strong> - Sistema de autenticación</li>
+<li><strong>Firebase Firestore</strong> - Sincronización mínima de usuarios</li>
+</ul>
+<h3>UI/UX</h3>
+<ul>
+<li><strong>SCSS/Sass</strong> - Estilos</li>
+<li><strong>react-circular-progressbar</strong> - Componente de progreso</li>
+<li><strong>Diseño Mobile First</strong> - Responsive design</li>
+</ul>
+<h3>Validación y Utilidades</h3>
+<ul>
+<li><strong>express-validator</strong> (backend) - Validación de inputs</li>
+<li><strong>Custom helpers</strong> - Manejo de errores y utilidades</li>
+</ul>
+<h2>Documentación del Código</h2>
+<p>El proyecto está documentado con <strong>JSDoc</strong>. Para generar y ver la documentación:</p>
+<pre class="prettyprint source lang-bash"><code># Generar documentación HTML
+yarn docs
+
+# Abrir documentación en el navegador
+open docs/index.html
+</code></pre>
+<p>Ver <a href="JSDOC_DOCUMENTATION.md">JSDOC_DOCUMENTATION.md</a> para más detalles.</p>
+<h2>Metodología de Desarrollo</h2>
+<p>Este proyecto se desarrolló siguiendo:</p>
+<ul>
+<li><strong>Metodología SCRUM</strong>: Sprints y backlog</li>
+<li><strong>Git</strong>: main, develop y feature</li>
+<li><strong>Separación de responsabilidades</strong>: Componentes, hooks, contexts</li>
+</ul>
+<h2>Compatibilidad de Navegadores</h2>
+<p>La aplicación es compatible con:</p>
+<ul>
+<li>Chrome (últimas 2 versiones)</li>
+<li>Firefox (últimas 2 versiones)</li>
+<li>Safari (últimas 2 versiones)</li>
+<li>Edge (últimas 2 versiones)</li>
+</ul>
+<p>Desplegado en <a href="https://flash-cards-hpoli.netlify.app/">Netlify</a>.</p>
+<h2>Licencia</h2>
+<p>Proyecto educativo - Todos los derechos reservados</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ProgressComponent.html">components/ProgressComponent</a></li><li><a href="module-contexts_AuthProvider.html">contexts/AuthProvider</a></li><li><a href="module-helpers_firebaseErrorMessages.html">helpers/firebaseErrorMessages</a></li><li><a href="module-hooks_useAuth.html">hooks/useAuth</a></li><li><a href="module-hooks_useFetch.html">hooks/useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Jan 14 2026 05:38:39 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

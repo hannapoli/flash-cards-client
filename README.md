@@ -225,6 +225,21 @@ La aplicación utiliza Firebase para:
 - **express-validator** (backend) - Validación de inputs
 - **Custom helpers** - Manejo de errores y utilidades
 
+## Documentación del Código
+
+El proyecto está documentado con **JSDoc**. Para generar y ver la documentación:
+
+```bash
+# Generar documentación HTML
+yarn docs
+
+# Abrir documentación en el navegador
+open docs/index.html
+```
+
+Ver [JSDOC_DOCUMENTATION.md](JSDOC_DOCUMENTATION.md) para más detalles.
+
+
 ## Metodología de Desarrollo
 
 Este proyecto se desarrolló siguiendo:
@@ -240,6 +255,8 @@ La aplicación es compatible con:
 - Firefox (últimas 2 versiones)
 - Safari (últimas 2 versiones)
 - Edge (últimas 2 versiones)
+
+Desplegado en [Netlify](https://flash-cards-hpoli.netlify.app/).
 
 ## Licencia
 
