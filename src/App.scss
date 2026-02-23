@@ -74,6 +74,17 @@
     background: var(--gradient-error);
 }
 
+.loginGoogleBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3em;
+}
+
+.loginGoogleBtn img {
+    width: 3em;
+}
+
 .bigBtn {
     font-size: 1rem;
     padding: 0.7em 1.7em;

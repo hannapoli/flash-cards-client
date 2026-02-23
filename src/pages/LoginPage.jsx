@@ -1,14 +1,28 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../hooks/useAuth';
+import { getFirebaseErrorMessage } from '../helpers/firebaseErrorMessages';
+import { PopUp } from '../components/PopUp';
 
 export const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetSent, setResetSent] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
 
-  const { login, loading, authError, setAuthError, user, role } = useAuth();
+  const {
+    login,
+    loginWithGoogle,
+    resetPassword,
+    loading,
+    authError,
+    setAuthError,
+    user,
+    role
+  } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const message = location.state?.message || null;
@@ -42,6 +56,16 @@ export const LoginPage = () => {
     e.preventDefault();
     await login(formData);
   }
+
+  const handleResetPassword = async () => {
+    try {
+      await resetPassword(resetEmail);
+      setResetSent(true);
+    } catch (error) {
+      setAuthError(getFirebaseErrorMessage(error));
+    }
+  }
+
   return (
     <>
       <section className='flexColumn centeredContent'>
@@ -77,14 +101,54 @@ export const LoginPage = () => {
               noValidate
             />
           </div>
-            <button type='submit' disabled={loading} className='confirmBtn marginTop'>
-              {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
-            </button>
+          <button type='submit' disabled={loading} className='confirmBtn marginTop'>
+            {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+          </button>
         </form>
-        <div className='marginTop'>
-          ¿No tienes una cuenta? <Link to='/auth/register'>Regístrate</Link>
-        </div>
+
+          <div className='btns'>
+          <button
+            onClick={loginWithGoogle}
+            className='confirmBtn loginGoogleBtn'
+            disabled={loading}>
+            <img src='/src/assets/images/google.png' alt='Google' />
+            Iniciar sesión con Google
+          </button>
+
+          <button onClick={() => setShowPopUp(true)} className='confirmBtn'>Recuperar la contraseña</button>
+          </div>
+
+          <div className='marginTop'>
+            ¿No tienes una cuenta? <Link to='/auth/register'>Regístrate</Link>
+          </div>
       </section>
+
+       {/* PopUp para reestablecer contraseña */}
+      <PopUp isOpen={showPopUp} onClose={() => setShowPopUp(false)}>
+        <h3>Recuperar contraseña</h3>
+        <p>Ingresa tu email para recibir instrucciones de recuperación</p>
+        <div className='flexColumn'>
+          <input
+            type='email'
+            name='resetEmail'
+            id='resetEmail'
+            placeholder='Ingresa tu email'
+            value={resetEmail}
+            onChange={(e) => setResetEmail(e.target.value)}
+            noValidate
+          />
+        </div>
+        <div>
+          <button onClick={handleResetPassword} className='confirmBtn marginTop'>
+            {loading ? 'Enviando email...' : 'Reestablecer contraseña'}
+          </button>
+        </div>
+        {resetSent && (
+          <p className='successMessage marginTop'>
+            Email de recuperación enviado. Revisa tu bandeja de entrada.
+          </p>
+        )}
+      </PopUp>
     </>
   )
 }

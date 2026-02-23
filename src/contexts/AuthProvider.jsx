@@ -1,7 +1,7 @@
 import { getFirebaseErrorMessage } from '../helpers/firebaseErrorMessages';
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase/firebaseConfig';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, updatePassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { AuthContext } from './AuthContext';
 import { useFetch } from '../hooks/useFetch';
 
@@ -197,6 +197,28 @@ export const AuthProvider = ({ children }) => {
     };
 
     /**
+     * Inicia sesión con Google utilizando Firebase Authentication
+     * @returns {Promise<void>}
+     * @throws {Error} Si el login con Google falla
+     */
+    const loginWithGoogle = async () => {
+        setAuthError(null);
+        setLoading(true);
+
+        const provider = new GoogleAuthProvider();
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            // Ignorar el error si el usuario cerró el popup intencionalmente
+            if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+                setAuthError(getFirebaseErrorMessage(error));
+            }
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    /**
      * Cierra la sesión del usuario actual
      * @returns {Promise<void>}
      * @throws {Error} Si el cierre de sesión falla
@@ -217,17 +239,17 @@ export const AuthProvider = ({ children }) => {
      * @param {string} email - Email del usuario
      * @returns {Promise<void>}
      */
-    const resetPassword = (email) => {
-        return sendPasswordResetEmail(auth, email);
-    };
-
-    /**
-     * Cambia la contraseña del usuario actual
-     * @param {string} newPassword - Nueva contraseña
-     * @returns {Promise<void>}
-     */
-    const changePassword = (newPassword) => {
-        return updatePassword(auth.currentUser, newPassword);
+    const resetPassword = async (email) => {
+        setAuthError(null);
+        setLoading(true);
+        try {
+            await sendPasswordResetEmail(auth, email);
+        } catch (error) {
+            setAuthError(getFirebaseErrorMessage(error));
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     };
 
     const value = {
@@ -241,9 +263,9 @@ export const AuthProvider = ({ children }) => {
         register,
         adminCreateUser,
         login,
+        loginWithGoogle,
         logout,
-        resetPassword,
-        changePassword
+        resetPassword
     };
 
     return (

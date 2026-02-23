@@ -23,6 +23,7 @@
 }
 
 .popupCard {
+    position: relative;
     background: var(--color-white);
     border-radius: 20px;
     padding: 2em;
@@ -72,6 +73,30 @@
 .popupActions button {
     flex: 1;
     min-width: 120px;
+}
+
+.popupClose {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gradient-light);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    transition: all 0.2s ease;
+}
+
+.popupClose:hover {
+    background: var(--gradient-light-alt);
+    transform: scale(1.1);
 }
 
 /* ===============================

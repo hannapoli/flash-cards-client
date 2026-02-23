@@ -1,4 +1,4 @@
-import './DeletePopUp.scss';
+import './PopUp.scss';
 
 export const DeletePopUp = ({
   type,
@@ -11,6 +11,7 @@ export const DeletePopUp = ({
   return (
     <div className='popupOverlay flexContainer'>
       <article className='popupCard'>
+        <button className='popupClose' onClick={onCancel}>×</button>
         <div className='popupContent flexColumn'>
           <h3>¿Estás seguro que quieres eliminar {type}?</h3>
           <p className='popupItem'>{item}</p>

@@ -10,6 +10,7 @@
 const firebaseErrorMessages = {
     'auth/email-already-in-use': 'El correo electrónico ya está en uso.',
     'auth/invalid-email': 'El correo electrónico no es válido.',
+    'auth/missing-password': 'La contraseña es obligatoria.',
     'auth/weak-password': 'La contraseña es demasiado débil. Debe tener al menos 6 caracteres.',
     'auth/user-not-found': 'No existe una cuenta con este correo.',
     'auth/wrong-password': 'La contraseña es incorrecta.',
@@ -44,7 +45,7 @@ export function getFirebaseErrorMessage(error) {
     if (typeof error.message === 'string') {
         for (const code in firebaseErrorMessages) {
             if (error.message.includes(code)) {
-                return firebaseErrorMessages.code;
+                return firebaseErrorMessages[code];
             }
         }
     }
