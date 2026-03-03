@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../hooks/useAuth';
 import { getFirebaseErrorMessage } from '../helpers/firebaseErrorMessages';
 import { PopUp } from '../components/PopUp';
+import googleIcon from '../assets/images/google.png';
 
 export const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -111,7 +112,7 @@ export const LoginPage = () => {
             onClick={loginWithGoogle}
             className='confirmBtn loginGoogleBtn'
             disabled={loading}>
-            <img src='/src/assets/images/google.png' alt='Google' />
+            <img src={googleIcon} alt='Google' />
             Iniciar sesión con Google
           </button>
 

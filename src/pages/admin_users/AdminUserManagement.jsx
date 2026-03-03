@@ -28,7 +28,7 @@ export const AdminUserManagement = () => {
       try {
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
-          `${backendUrl}/admin/users/getall`,
+          `${backendUrl}/admin/users`,
           'GET',
           null,
           token
@@ -59,7 +59,7 @@ export const AdminUserManagement = () => {
     try {
       const token = await auth.currentUser?.getIdToken();
       const response = await fetchData(
-        `${backendUrl}/admin/users/get/${firebaseUid}`,
+        `${backendUrl}/admin/users/${firebaseUid}`,
         'GET',
         null,
         token
@@ -80,7 +80,7 @@ export const AdminUserManagement = () => {
     try {
       const token = await auth.currentUser?.getIdToken();
       await fetchData(
-        `${backendUrl}/admin/users/delete/${userToDelete.firebase_uid}`,
+        `${backendUrl}/admin/users/${userToDelete.firebase_uid}`,
         'DELETE',
         null,
         token

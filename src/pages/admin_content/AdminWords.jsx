@@ -27,7 +27,7 @@ export const AdminWords = () => {
         setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
-          `${backendUrl}/admin/word/getall/${category_id}`,
+          `${backendUrl}/admin/categories/${category_id}/words`,
           'GET',
           null,
           token
@@ -50,7 +50,7 @@ export const AdminWords = () => {
     try {
       const token = await auth.currentUser?.getIdToken();
       await fetchData(
-        `${backendUrl}/admin/word/delete/${wordToDelete.id_word}`,
+        `${backendUrl}/admin/words/${wordToDelete.id_word}`,
         'DELETE',
         null,
         token

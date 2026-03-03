@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import './HomePage.scss';
+import flashCardsLogo from '../assets/images/flash-cards-logo-transparent2.png';
 
 export const HomePage = () => {
     return (
@@ -8,7 +9,7 @@ export const HomePage = () => {
                 <section className='flexColumn centeredContent'>
                     <h1>¡Bienvenido a Flash Cards!</h1>
                     <div className='homeImage'>
-                        <img src='/src/assets/images/flash-cards-logo-transparent2.png' alt='FlashCards' />
+                        <img src={flashCardsLogo} alt='FlashCards' />
                     </div>
                     <p>Tu plataforma para <strong className='bold'>aprender y practicar</strong></p>
                     <p>nuevos <strong className='bold'>idiomas</strong> de manera efectiva.</p>

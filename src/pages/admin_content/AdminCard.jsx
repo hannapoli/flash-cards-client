@@ -34,12 +34,12 @@ export const AdminCard = () => {
         setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
-          `${backendUrl}/admin/word/get/${word_id}`,
+          `${backendUrl}/admin/words/${word_id}`,
           'GET',
           null,
           token
         );
-        // console.log({response});
+        console.log({response});
         const wordInfo = response.word;
         setWordData({
           word: wordInfo.word || '',
@@ -67,7 +67,7 @@ export const AdminCard = () => {
     try {
       const token = await auth.currentUser?.getIdToken();
       await fetchData(
-        `${backendUrl}/admin/word/delete/${word_id}`,
+        `${backendUrl}/admin/words/${word_id}`,
         'DELETE',
         null,
         token

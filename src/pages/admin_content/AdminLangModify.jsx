@@ -48,7 +48,7 @@ export const AdminLangModify = () => {
 
 
             await fetchData(
-                `${backendUrl}/admin/lang/edit/${language_id}`,
+                `${backendUrl}/admin/languages/${language_id}`,
                 'PUT',
                 payload,
                 token

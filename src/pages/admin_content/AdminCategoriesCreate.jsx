@@ -41,7 +41,7 @@ export const AdminCategoriesCreate = () => {
         language_id: language_id
       };
       await fetchData(
-        `${backendUrl}/admin/category/create`,
+        `${backendUrl}/admin/categories`,
         'POST',
         payload,
         token

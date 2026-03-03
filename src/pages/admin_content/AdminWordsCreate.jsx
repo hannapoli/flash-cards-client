@@ -62,7 +62,7 @@ export const AdminWordsCreate = () => {
       }
 
       const response = await fetch(
-        `${backendUrl}/admin/word/create`, {
+        `${backendUrl}/admin/words`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

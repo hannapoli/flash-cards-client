@@ -48,7 +48,7 @@ export const AdminCategoriesModify = () => {
 
 
             await fetchData(
-                `${backendUrl}/admin/category/edit/${category_id}`,
+                `${backendUrl}/admin/categories/${category_id}`,
                 'PUT',
                 payload,
                 token

@@ -158,7 +158,7 @@ export const AuthProvider = ({ children }) => {
             };
 
             await fetchData(
-                `${backendUrl}/admin/users/create`,
+                `${backendUrl}/admin/users`,
                 'POST',
                 payload,
                 adminToken

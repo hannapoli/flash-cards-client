@@ -27,7 +27,7 @@ export const AdminCategories = () => {
         setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
-          `${backendUrl}/admin/category/getall/${language_id}`,
+          `${backendUrl}/admin/languages/${language_id}/categories`,
           'GET',
           null,
           token
@@ -50,7 +50,7 @@ export const AdminCategories = () => {
     try {
       const token = await auth.currentUser?.getIdToken();
       await fetchData(
-        `${backendUrl}/admin/category/delete/${categoryToDelete.id_category}`,
+        `${backendUrl}/admin/categories/${categoryToDelete.id_category}`,
         'DELETE',
         null,
         token

@@ -39,7 +39,7 @@ export const AdminLangCreate = () => {
                 code: formData.code
             };
             await fetchData(
-                `${backendUrl}/admin/lang/create`,
+                `${backendUrl}/admin/languages`,
                 'POST',
                 payload,
                 token

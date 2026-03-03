@@ -63,7 +63,7 @@ export const AdminWordsModify = () => {
       }
 
       const response = await fetch(
-        `${backendUrl}/admin/word/edit/${word_id}`, {
+        `${backendUrl}/admin/words/${word_id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`

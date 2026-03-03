@@ -23,7 +23,7 @@ export const AdminLanguages = () => {
         setError(null);
         const token = await auth.currentUser?.getIdToken();
         const response = await fetchData(
-          `${backendUrl}/admin/lang/getall`,
+          `${backendUrl}/admin/languages`,
           'GET',
           null,
           token
@@ -44,7 +44,7 @@ export const AdminLanguages = () => {
     try {
       const token = await auth.currentUser?.getIdToken();
       await fetchData(
-        `${backendUrl}/admin/lang/delete/${languageToDelete.id_language}`,
+        `${backendUrl}/admin/languages/${languageToDelete.id_language}`,
         'DELETE',
         null,
         token

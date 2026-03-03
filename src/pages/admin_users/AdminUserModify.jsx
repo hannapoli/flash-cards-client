@@ -41,7 +41,7 @@ export const AdminUserModify = () => {
       }
       const token = await auth.currentUser?.getIdToken();
       await fetchData(
-        `${backendUrl}/admin/users/edit/${foundUser.firebase_uid}`,
+        `${backendUrl}/admin/users/${foundUser.firebase_uid}`,
         'PUT',
         {
           name: formData.name,
